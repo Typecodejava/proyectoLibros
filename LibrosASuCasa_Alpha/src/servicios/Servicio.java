@@ -5,7 +5,10 @@ public class Servicio implements InterfaceServicio{
 	
 	private InterfaceDatos datos=new Datos();
 	
-	public ColLibros BuscarTitulo(String busqueda){
-		return datos.BuscarTitulo(busqueda);
+	public ColLibros BuscarTitulo(String string){
+		return datos.BuscarTitulo(string);
 	}
-}
+
+	public ColLibros BuscarAutor(String string){
+		return datos.BuscarAutor(string);
+}}
