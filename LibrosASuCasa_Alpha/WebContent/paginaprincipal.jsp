@@ -14,8 +14,10 @@
 <body>
 	<div id="wrapper">
 	
-	<c:forEach items=${categorias} val="categoria">
-		<a href="/Menu?operacion=busqueda&lib_categoria=${categoria}"><p>${categoria}</p></a>
+
+	
+	<c:forEach items="${categorias}" var="categoria">
+		<a href="Menu?operacion=busqueda&lib_categoria=${categoria}"><p>${categoria}</p></a>
 	</c:forEach>
 	
 	

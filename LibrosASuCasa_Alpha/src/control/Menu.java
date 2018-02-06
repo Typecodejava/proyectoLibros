@@ -46,7 +46,8 @@ public class Menu extends HttpServlet {
 				// - Guardarla en objeto
 				libros=serv.BuscarAutor(request.getParameter("lib_autor"));
 			}
-				//guardo la informacion
+		
+				//guardo la informacion	lib_categoria
 			else if (request.getParameter("lib_categoria")!=null){
 				libros=serv.BuscarLibrosCategoria(request.getParameter("lib_categoria"));
 			}
@@ -57,6 +58,7 @@ public class Menu extends HttpServlet {
 
 		
 		} else if (request.getParameter("operacion").equals("mostrarcategoria")){
+			System.out.println("--- esta dentro de senredirectu ---");
 			List<String> categorias;
 			categorias=serv.BuscarCategorias();
 			request.setAttribute("categorias", categorias);
