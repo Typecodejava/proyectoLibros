@@ -4,12 +4,8 @@
 <html>
 <head>
 <title>RESULTADO DE BUSQUEDA</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="css/restaurante.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-
 <body>
 	<h1>LIBROS CON COINCIDENCIA</h1>
 
@@ -18,18 +14,26 @@
 
 	<ul style="list-style-type: circle">
 
-		<c:forEach items="${Listalibros}" var="libro" begin="0">
-			<p>----------------------------------------------------------------------------------------------------------------------------------------------</p>
-			<li><P>TITULO: ${libro.titulo}</P>
+		<c:choose>
+			<c:when test="${Listalibros.isEmpty()}">
+				<p>No se ha encontrado libro</p>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${Listalibros}" var="libro" begin="0">
+					<p>----------------------------------------------------------------------------------------------------------------------------------------------</p>
+					<li><P>TITULO: ${libro.titulo}</P>
+						<p>ISBN: ${libro.isbn}</p>
 
-				<p>ISBN: ${libro.isbn}</p>
+						<p>DESCRIPCION: ${libro.descripcion}</p>
 
-				<p>DESCRIPCION: ${libro.descripcion}</p>
+						<p>PRECIO: ${libro.precio}€</p>
 
-				<p>PRECIO: ${libro.precio}€</p>
+						<p>SINOPSIS: ${libro.sinopsis}</p></li>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 
-				<p>SINOPSIS: ${libro.sinopsis}</p></li>
-		</c:forEach>
+
 	</ul>
 
 
