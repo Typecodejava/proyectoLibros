@@ -43,7 +43,7 @@ public class Menu extends HttpServlet {
 			 * guarda en request y se llama menuDia
 			 */
 			// ---------Buscar en BBDD-----------//
-			request.setAttribute("libros", libros);
+			request.setAttribute("Listalibros", libros.getLibros());
 
 			// --------------------------------------
 			// Paso 3
