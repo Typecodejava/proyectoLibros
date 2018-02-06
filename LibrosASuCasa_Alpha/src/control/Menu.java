@@ -25,14 +25,27 @@ public class Menu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		System.out.println("--- dentro del servlet Menu ---");
 		InterfaceServicio serv=new Servicio();
-		try {
-
+		ColLibros libros = new ColLibros ();
+		
+		if ( request.getParameter("lib_titulo") != null ){
 			// Paso 01
 			// - Recoger informacion
 			// - Guardarla en objeto
-			ColLibros libros=serv.BuscarTitulo(request.getParameter("lib_titulo"));
+			libros=serv.BuscarTitulo(request.getParameter("lib_titulo"));
+		}
+		if ( request.getParameter("lib_autor") != null ){
+			// Paso 01
+			// - Recoger informacion
+			// - Guardarla en objeto
+			libros=serv.BuscarAutor(request.getParameter("lib_autor"));
+		}
+		
+		try {
+
+
 			//String titulo=request.getParameter("lib_titulo");
 			//request.setAttribute("titulo", titulo);
 	/*
