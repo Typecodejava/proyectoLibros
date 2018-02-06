@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Datos implements InterfaceDatos {
 	
@@ -72,5 +74,24 @@ public class Datos implements InterfaceDatos {
 		return this.CrearColeccion (query);
 		
 	}
-
+	
+	public List<String> BuscarCategorias (){
+		List<String> misCategorias = new ArrayList<>();
+		Statement st = null;
+		ResultSet rs = null;
+		String query = "SELECT nombre FROM categorias;";
+		
+		try{
+			st = conectar();
+			rs = st.executeQuery(query);
+			
+			while (rs.next()){
+				misCategorias.add(rs.getString(1));
+			}
+		}
+		catch (SQLException e){
+			System.out.println("SQLException");
+		}
+		return misCategorias;
+	}
 }
