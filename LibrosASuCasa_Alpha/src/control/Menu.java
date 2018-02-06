@@ -30,7 +30,6 @@ public class Menu extends HttpServlet {
 		
 		System.out.println("--- dentro del servlet Menu ---");
 		InterfaceServicio serv=new Servicio();
-		ColLibros libros = new ColLibros ();
 		
 		
 		if ((request.getParameter("operacion").equals("busqueda"))){
@@ -59,7 +58,7 @@ public class Menu extends HttpServlet {
 		
 		} else if (request.getParameter("operacion").equals("mostrarcategoria")){
 			List<String> categorias;
-			categorias=serv.BuscarCatergorias();
+			categorias=serv.BuscarCategorias();
 			request.setAttribute("categorias", categorias);
 			mostrar(request, response,"paginaprincipal.jsp");
 		}

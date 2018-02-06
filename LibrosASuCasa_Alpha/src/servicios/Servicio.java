@@ -16,8 +16,8 @@ public class Servicio implements InterfaceServicio{
 		return datos.BuscarAutor(string);
 	}
 	
-	public ColLibros BuscarLibrosCategoria (){
-		return datos.BuscarLibrosCategoria();
+	public ColLibros BuscarLibrosCategoria (String string){
+		return datos.BuscarLibrosCategoria(string);
 	}
 	
 	public List<String> BuscarCategorias (){
