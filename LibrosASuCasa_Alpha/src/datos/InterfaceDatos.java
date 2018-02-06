@@ -8,7 +8,7 @@ public interface InterfaceDatos {
 	
 	public ColLibros BuscarTitulo (String string);
 	public ColLibros BuscarAutor (String string);
-	public ColLibros BuscarLibrosCategorias ();
+	public ColLibros BuscarLibrosCategoria ();
 	public List<String> BuscarCategorias ();
 
 	
