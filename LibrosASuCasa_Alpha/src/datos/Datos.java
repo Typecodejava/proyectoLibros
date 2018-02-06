@@ -94,4 +94,14 @@ public class Datos implements InterfaceDatos {
 		}
 		return misCategorias;
 	}
+
+	/** Metodo para busqueda de Libros por categoria*/
+	
+	public ColLibros BuscarLibrosCategoria (String busqueda){
+		
+		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, cantidad, precio FROM "+BDDNAME+".libros, "+BDDNAME+".categorias WHERE categorias.nombre like '%"+busqueda+"%' AND libros.idCategorias=categorias.idCategorias;";
+		return this.CrearColeccion (query);
+	}
+
+
 }
