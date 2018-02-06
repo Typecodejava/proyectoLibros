@@ -12,17 +12,15 @@
 <link href="css/restaurante.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div id="wrapper">
-	
 
-	
+<h1>CATEGORÍAS DE LIBROS</h1>
+	<div id="wrapper">
+	<ul >
 	<c:forEach items="${categorias}" var="categoria">
-		<a href="Menu?operacion=busqueda&lib_categoria=${categoria}"><p>${categoria}</p></a>
+		
+		<li><a href="Menu?operacion=busqueda&lib_categoria=${categoria}">${categoria}</a></li>
 	</c:forEach>
-	
-	
-	
-	
+	</ul>
 		<div id="header">
 		
 		
