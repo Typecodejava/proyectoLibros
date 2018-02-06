@@ -38,7 +38,7 @@ public class Datos implements InterfaceDatos {
 
 	
 	public ColLibros BuscarAutor(String busqueda){
-		String query ="SELECT * FROM "+BDDNAME+".libros WHERE libros.idautores IN (SELECT autores.idautores FROM "+BDDNAME+".autores WHERE nombre LIKE '%"+busqueda+"%' or apellido LIKE '%"+busqueda+"%');";
+		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, cantidad, precio FROM "+BDDNAME+".libros WHERE libros.idautores IN (SELECT autores.idautores FROM "+BDDNAME+".autores WHERE nombre LIKE '%"+busqueda+"%' or apellido LIKE '%"+busqueda+"%');";
 
 		return this.CrearColeccion (query);
 		
