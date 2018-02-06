@@ -25,7 +25,7 @@
 		
 		
 		
-			<h1>BUSQUEDA DE LIBRO POR TITULO</h1>
+			<h1>BUSQUEDA DE LIBRO POR TITULO :)</h1>
 
 		</div>
 		<div id="main">
