@@ -48,6 +48,9 @@ public class Menu extends HttpServlet {
 				libros=serv.BuscarAutor(request.getParameter("lib_autor"));
 			}
 				//guardo la informacion
+			else if (request.getParameter("lib_categoria")!=null){
+				libros=serv.BuscarLibrosCategoria(request.getParameter("lib_categoria"));
+			}
 				request.setAttribute("Listalibros", libros.getLibros());
 
 				// - Ceder control
