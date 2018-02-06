@@ -86,7 +86,7 @@ public class Menu extends HttpServlet {
 
 	protected void mostrar(HttpServletRequest request, HttpServletResponse response, String pagina)
 			throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("resultadoBusqueda.jsp");
+		RequestDispatcher view = request.getRequestDispatcher(pagina);
 		view.forward(request, response);
 
 	}
