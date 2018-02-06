@@ -1,38 +1,33 @@
 <!DOCTYPE html>
-<!--
-Proyecto: Restaurante
-Versión: 3e
-Descripción: Restaurante v3e (Multi,MVC,JSP,JSTL)
--->
-<html>
-    <head>
-        <title>BUSQUEDA POR TITULO</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/restaurante.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="header">
-                <h1>BUSQUEDA DE LIBRO POR TITULO</h1>
 
-            </div>
-            <div id="main">
-                <form action="Menu" method="post">
-                    <fieldset>
-                  			<legend>TÍTULO</legend>
+<html>
+<head>
+<title>BUSQUEDA POR TITULO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/restaurante.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<h1>BUSQUEDA DE LIBRO POR TITULO</h1>
+
+		</div>
+		<div id="main">
+			<form action="Menu" method="post">
+				<fieldset>
+					<legend>TÍTULO</legend>
 					<p>
 						<label for="nombre">Indique Título de libro a Buscar:</label> <input
-							type="text" id="lib_titulo" name="lib_titulo" required />
+							type="text" id="lib_titulo" name="lib_titulo" required="required" />
 					<p>
 						<input type="submit" value="Enviar" />
 					</p>
-
-					probando a ver si se modifica
 				</fieldset>
+			</form>
 
-
+			<form action="Menu" method="post">
 				<fieldset>
 					<legend>AUTOR</legend>
 					<p>
@@ -42,9 +37,10 @@ Descripción: Restaurante v3e (Multi,MVC,JSP,JSTL)
 					<p>
 						<input type="submit" value="Enviar" />
 					</p>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </body>
+				</fieldset>
+			</form>
+
+		</div>
+	</div>
+</body>
 </html>
