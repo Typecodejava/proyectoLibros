@@ -38,16 +38,12 @@ public class Datos implements InterfaceDatos {
 	public ColLibros BuscarAutor(String busqueda){
 		Statement st = null;
 		ResultSet rs = null;
-		System.out.println("empezamos a buscar por autor");
 		ColLibros librosDeBusqueda = new ColLibros();
-		String query ="SELECT* FROM "+BDDNAME+".libros WHERE libros.idautores IN (SELECT autores.idautores FROM "+BDDNAME+".autores WHERE nombre LIKE '%"+busqueda+"%' or apellido LIKE '%"+busqueda+"%';)";
-		System.out.println("query aceptada");
+		String query ="SELECT * FROM "+BDDNAME+".libros WHERE libros.idautores IN (SELECT autores.idautores FROM "+BDDNAME+".autores WHERE nombre LIKE '%"+busqueda+"%' or apellido LIKE '%"+busqueda+"%');";
 		try{
 			st = conectar();
-			System.out.println("ha conectado");
 			rs = st.executeQuery(query);
 			while ( rs.next() ){
-				System.out.println("Recorriendo resultados");
 				Libro nuevoLibro = new Libro (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7));
 				librosDeBusqueda.add(nuevoLibro);
 			}
