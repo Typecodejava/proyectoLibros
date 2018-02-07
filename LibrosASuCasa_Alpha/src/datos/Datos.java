@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Datos implements InterfaceDatos {
 	
@@ -32,13 +35,19 @@ public class Datos implements InterfaceDatos {
 			
 		}catch (SQLException e){
 			System.out.println("SQLException");
+		}finally{
+			try{
+				conex.close();
+			}catch(SQLException e){
+				System.out.println("SQL exception en el close");
+			}
 		}
 		return st;
 	}
 
 	
 	public ColLibros BuscarAutor(String busqueda){
-		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, cantidad, precio FROM "+BDDNAME+".libros WHERE libros.idautores IN (SELECT autores.idautores FROM "+BDDNAME+".autores WHERE nombre LIKE '%"+busqueda+"%' or apellido LIKE '%"+busqueda+"%');";
+		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM "+BDDNAME+".libros WHERE libros.idautores IN (SELECT autores.idautores FROM "+BDDNAME+".autores WHERE nombre LIKE '%"+busqueda+"%' or apellido LIKE '%"+busqueda+"%');";
 
 		return this.CrearColeccion (query);
 		
@@ -68,7 +77,7 @@ public class Datos implements InterfaceDatos {
 	public ColLibros BuscarTitulo (String busqueda){
 		
 		
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, cantidad, precio FROM "+BDDNAME+".libros WHERE titulo LIKE '%"+busqueda+"%';";
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM "+BDDNAME+".libros WHERE titulo LIKE '%"+busqueda+"%';";
 		
 		
 		return this.CrearColeccion (query);
@@ -103,5 +112,50 @@ public class Datos implements InterfaceDatos {
 		return this.CrearColeccion (query);
 	}
 
+    public void alta(Libro libro){
+    	Statement st = null;
+    	try {
+        
+	        st =  conectar();
+	        String q = "INSERT INTO `libros` VALUES ('" + libro.getIdLibro() + "','" + libro.getIsbn() + "','" + libro.getTitulo() + "','" + libro.getDescripcion() + "','" + libro.getSinopsis() + "','" + libro.getImagen() +"','" + libro.getCantidad()+"','" + libro.getPrecio() +"')";
+	        int i = st.executeUpdate(q);
 
+       
+	    } catch (SQLException ex) {
+	        System.out.println("SQLException");
+	    }
+    }
+    
+    public void Update(Libro libro) {
+        Statement st = null;
+        try {
+            st = conectar();
+            String q = "UPDATE `libros` SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo() + "',descripcion'" + libro.getDescripcion() + "',sinopsis'" + libro.getSinopsis() + "',imagen'" + libro.getImagen() +"',cantidad'" + libro.getCantidad()+"',precio'" + libro.getPrecio()+"' WHERE code='" + libro.getIdLibro() + "'";
+            System.out.println(q);
+            int i = st.executeUpdate(q);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+   
+    public void Baja(String idlibro) {
+        Statement st = null;
+        try {
+            System.out.println("--- Dando de baja el codigo " + idlibro);
+            st=conectar();
+            String q = "delete from libros where idLibros ='" + idlibro + "'";
+
+            int i = st.executeUpdate(q);
+            System.out.println(q + i);
+           
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    
+    
 }

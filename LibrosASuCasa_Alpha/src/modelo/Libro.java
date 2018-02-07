@@ -1,5 +1,7 @@
 package modelo;
 
+import java.sql.Blob;
+
 public class Libro {
 	
 	
@@ -10,6 +12,7 @@ public class Libro {
 	private String sinopsis; 
 	private double precio;
 	private int cantidad;
+	private Blob imagen;
 	
 	
 	public int getIdLibro() {
@@ -48,6 +51,21 @@ public class Libro {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+	public int getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	
+	
+	public Blob getImagen() {
+		return imagen;
+	}
+	public void setImagen(Blob imagen) {
+		this.imagen = imagen;
+	}
 	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad) {
 		super();
 		this.idLibro = idLibro;
@@ -59,7 +77,7 @@ public class Libro {
 		this.cantidad=cantidad;
 	} 
 	
-	
+
 	public Libro(){
 		
 	}
