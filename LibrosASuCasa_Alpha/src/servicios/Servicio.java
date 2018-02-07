@@ -1,5 +1,8 @@
 package servicios;
 import modelo.ColLibros;
+
+import java.util.List;
+
 import datos.*;
 public class Servicio implements InterfaceServicio{
 	
@@ -11,4 +14,13 @@ public class Servicio implements InterfaceServicio{
 
 	public ColLibros BuscarAutor(String string){
 		return datos.BuscarAutor(string);
-}}
+	}
+	
+	public ColLibros BuscarLibrosCategoria (String string){
+		return datos.BuscarLibrosCategoria(string);
+	}
+	
+	public List<String> BuscarCategorias (){
+		return datos.BuscarCategorias();
+	}
+}

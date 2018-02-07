@@ -30,7 +30,6 @@ public class Menu extends HttpServlet {
 		
 		System.out.println("--- dentro del servlet Menu ---");
 		InterfaceServicio serv=new Servicio();
-		ColLibros libros = new ColLibros ();
 		
 		
 		if ((request.getParameter("operacion").equals("busqueda"))){
@@ -47,7 +46,8 @@ public class Menu extends HttpServlet {
 				// - Guardarla en objeto
 				libros=serv.BuscarAutor(request.getParameter("lib_autor"));
 			}
-				//guardo la informacion
+		
+				//guardo la informacion	lib_categoria
 			else if (request.getParameter("lib_categoria")!=null){
 				libros=serv.BuscarLibrosCategoria(request.getParameter("lib_categoria"));
 			}
@@ -58,8 +58,9 @@ public class Menu extends HttpServlet {
 
 		
 		} else if (request.getParameter("operacion").equals("mostrarcategoria")){
+			System.out.println("--- esta dentro de senredirectu ---");
 			List<String> categorias;
-			categorias=serv.BuscarCatergorias();
+			categorias=serv.BuscarCategorias();
 			request.setAttribute("categorias", categorias);
 			mostrar(request, response,"paginaprincipal.jsp");
 		}
@@ -87,7 +88,7 @@ public class Menu extends HttpServlet {
 
 	protected void mostrar(HttpServletRequest request, HttpServletResponse response, String pagina)
 			throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("resultadoBusqueda.jsp");
+		RequestDispatcher view = request.getRequestDispatcher(pagina);
 		view.forward(request, response);
 
 	}

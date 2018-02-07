@@ -1,2 +1,2 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% response.sendRedirect("Menu?operacion=mostrarcategorias");%>
+<% response.sendRedirect("Menu?operacion=mostrarcategoria");%>
