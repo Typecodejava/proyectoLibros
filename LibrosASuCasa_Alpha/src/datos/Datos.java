@@ -112,7 +112,7 @@ public class Datos implements InterfaceDatos {
 		return this.CrearColeccion (query);
 	}
 
-    public void alta(Libro libro){
+    public void Alta(Libro libro){
     	Statement st = null;
     	try {
         
