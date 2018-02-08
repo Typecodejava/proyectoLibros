@@ -42,8 +42,8 @@
                                 <td>${libros.titulo}</td>
                                 <td>${libros.precio}</td>
                                 <td>${libros.cantidad}</td>
-                                <td><a href="AdminMenu?operacion=modificacion&idLibros=${libros.idLibros}">Modificar</a></td>
-                                <td><a href="AdminMenu?operacion=baja&idLibros=${libros.idLibros}">Eliminar</a></td>
+                                <td><a href="LoginServlet?operacion=modificacion&idLibros=${libros.idLibros}">Modificar</a></td>
+                                <td><a href="LoginServlet?operacion=baja&idLibros=${libros.idLibros}">Eliminar</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
