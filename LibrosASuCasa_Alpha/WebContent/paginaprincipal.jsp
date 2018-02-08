@@ -147,10 +147,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  </button>
 			   </div> 
 			   <!-- Collect the nav links, forms, and other content for toggling -->
+			   <!--  CATEGORIAS DESDE LA BASE DE DATOS -->
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav nav_1">
 						<c:forEach items="${categorias}" var="categoria">
-							<li><a href="Menu?operacion=busqueda&lib_categoria=${categoria}">${categoria}</a></li>
+							<li><a href="Menu?operacion=busqueda&lib_categoria=${categoria}"><b>${categoria}</b></a></li>
 						</c:forEach>
 					
 					</ul>
@@ -173,15 +174,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="w3l_banner_nav_right_banner1">
 								<h3>&nbsp;<span>&nbsp;</span>&nbsp;</h3>
 								<div class="more">
-									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shut up and take my money!</a>
+									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shut up and take my money!">Shut up and take my money!</a>
 								</div>
 							</div>
 						</li>
 						<li>
 							<div class="w3l_banner_nav_right_banner2">
-								<h3>upto <i>50%</i> off.</h3>
+								<h3>&nbsp;<i>&nbsp;</i> &nbsp;</h3>
 								<div class="more">
-									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Diezmar">Donar todo mi dinero.</a>
 								</div>
 							</div>
 						</li>
