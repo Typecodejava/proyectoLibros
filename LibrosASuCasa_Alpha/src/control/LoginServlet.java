@@ -44,31 +44,40 @@ public class LoginServlet extends HttpServlet {
 													// los datos de
 													// usuario.admin
 				
+			
 			if(request.getParameter("operacion").equals("alta")){
-				List lista = new ArrayList<String>(); 
+				List<String> lista = new ArrayList<>(); 
+				
 				lista.add(request.getParameter("isbn"));
 				lista.add(request.getParameter("titulo"));
 				lista.add(request.getParameter("descripcion"));
 				lista.add(request.getParameter("sinopsis"));
 				lista.add(request.getParameter("precio"));
 				lista.add(request.getParameter("cantidad"));
-				
 				serv.Alta(lista);
-				
-				
-				
 			}else if(request.getParameter("operacion").equals("mostraralta")){
 				mostrar( request,  response, "altaLibro.jsp");
 			}
 			
-			else if(request.getParameter("operacion").equals("update"))	{
+			else if(request.getParameter("operacion").equals("mostrarupdate"))	{
 				String idlibros = request.getParameter("idlibro");
 				Libro libro=serv.BuscarLibro(idlibros);
 				request.setAttribute("libro", libro);
 				mostrar( request,  response, "UpdateLibro.jsp");
 			}
+			else if (request.getParameter("operacion").equals("update")){
+				List<String> lista1;
+				lista1 = new ArrayList<>(); 
+				lista1.add(request.getParameter("isbn"));
+				lista1.add(request.getParameter("titulo"));
+				lista1.add(request.getParameter("descripcion"));
+				lista1.add(request.getParameter("sinopsis"));
+				lista1.add(request.getParameter("precio"));
+				lista1.add(request.getParameter("cantidad"));
+				serv.Update(lista1);
+			}
 			
-			ColLibros libros =serv.ListaLibroBBDD();
+			ColLibros libros =serv.MostrarLibrosBBDD();
 			
 			
 			mostrar( request,  response, "mainBackOff.jsp");
@@ -113,5 +122,5 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher(pagina);
 		view.forward(request, response);
-
+	}
 }

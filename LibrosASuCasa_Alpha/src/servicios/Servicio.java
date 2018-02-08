@@ -45,17 +45,13 @@ public class Servicio implements InterfaceServicio {
 	
 	public Libro BuscarLibro (String idLibros){
 		return datos.BuscarLibro(idLibros).getLibros().get(0);
-
-	public void Baja(String idLibro) {
-		datos.Baja(idLibro);
-
 	}
 	
 	//devuelve toda la coleccion de libros en la BBDD
 	public ColLibros MostrarLibrosBBDD(){
-		return datos.ListaLibrosBBDD();};
+		return datos.ListaLibrosBBDD();
+		}
 
 
 
-}
 }
