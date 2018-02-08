@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<form action="Menu" method="post">
 				<input type="text" name="lib_titulo" value="Título de libro a Buscar..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Título de libro a Buscar...';}" required="">
 				<input type="hidden" name="operacion" value="busqueda" />		
-				<input type="submit" value=" ">
+				<input type="submit" value="Buscar">
 			</form>
 		</div>
 		<div class="product_list_header">  
@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <fieldset>
                     <input type="hidden" name="cmd" value="_cart" />
                     <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="View your cart" class="button" />
+                    <input type="submit" name="submit" value="Ver tu carrito" class="button" />
                 </fieldset>
             </form>
 		</div>
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 		</div>
 		<div class="w3l_header_right1">
-			<h2><a href="mail.html">Contact Us</a></h2>
+			<h2><a href="mail.html">Contacto</a></h2>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
@@ -111,14 +111,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="logo_products">
 		<div class="container">
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.html"><span>Grocery</span> Store</a></h1>
+				<h1><a href="index.html"><span>Libros</span>a Su Casa</a></h1>
 			</div>
 			<div class="w3ls_logo_products_left1">
 				<ul class="special_items">
-					<li><a href="events.html">Events</a><i>/</i></li>
-					<li><a href="about.html">About Us</a><i>/</i></li>
-					<li><a href="products.html">Best Deals</a><i>/</i></li>
-					<li><a href="services.html">Services</a></li>
+					<li><a href="events.html">Eventos</a><i>/</i></li>
+					<li><a href="about.html">Sobre Nosotros</a><i>/</i></li>
+					<li><a href="products.html">Ofertas</a><i>/</i></li>
+					<li><a href="services.html">Servicios</a></li>
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left1">
@@ -163,17 +163,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul class="slides">
 						<li>
 							<div class="w3l_banner_nav_right_banner">
-								<h3>Make your <span>food</span> with Spicy.</h3>
+								
 								<div class="more">
-									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+									<!--  <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a> -->
 								</div>
 							</div>
 						</li>
 						<li>
 							<div class="w3l_banner_nav_right_banner1">
-								<h3>Make your <span>food</span> with Spicy.</h3>
+								<h3>&nbsp;<span>&nbsp;</span>&nbsp;</h3>
 								<div class="more">
-									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shut up and take my money!</a>
 								</div>
 							</div>
 						</li>

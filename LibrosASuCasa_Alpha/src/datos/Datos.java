@@ -1,4 +1,5 @@
 package datos;
+
 import modelo.ColLibros;
 import modelo.Libro;
 
@@ -14,39 +15,41 @@ import java.util.logging.Logger;
 
 
 public class Datos implements InterfaceDatos {
-	
+
 	private static final String BDDNAME = "librosasucasa";
 	private static final String NOSSL = "?autoReconnect=true&useSSL=false";
-	
-	public Statement conectar(){
+
+	public Statement conectar() {
 		Connection conex = null;
 		Statement st = null;
 		String driverClassName = "com.mysql.jdbc.Driver";
-		String driverUrl = "jdbc:mysql://localhost/"+BDDNAME+NOSSL;
+		String driverUrl = "jdbc:mysql://localhost/" + BDDNAME + NOSSL;
 		String user = "root";
 		String paswd = "1111";
-		try{
+		try {
 			Class.forName(driverClassName);
 			conex = DriverManager.getConnection(driverUrl, user, paswd);
-			
+
 			st = conex.createStatement();
-		}catch (ClassNotFoundException e){
+		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
-			
-		}catch (SQLException e){
+
+		} catch (SQLException e) {
 			System.out.println("SQLException en el conectar");
 
 		}
 		return st;
 	}
 
-	
-	public ColLibros BuscarAutor(String busqueda){
-		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM "+BDDNAME+".libros WHERE libros.idautores IN (SELECT autores.idautores FROM "+BDDNAME+".autores WHERE nombre LIKE '%"+busqueda+"%' or apellido LIKE '%"+busqueda+"%');";
+	public ColLibros BuscarAutor(String busqueda) {
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM " + BDDNAME
+				+ ".libros WHERE libros.idautores IN (SELECT autores.idautores FROM " + BDDNAME
+				+ ".autores WHERE nombre LIKE '%" + busqueda + "%' or apellido LIKE '%" + busqueda + "%');";
 
-		return this.CrearColeccion (query);
-		
+		return this.CrearColeccion(query);
+
 	}
+
 	
 	//metodo que llama BD y devuelve un libro
 	public ColLibros BuscarLibro(String busqueda){
@@ -56,109 +59,169 @@ public class Datos implements InterfaceDatos {
 		
 	}
 	
-	
-	public ColLibros CrearColeccion (String query){
+
+
+	public ColLibros CrearColeccion(String query) {
 		Statement st = null;
 		ResultSet rs = null;
-		ColLibros librosDeBusqueda = new ColLibros ();
-		try{
+		ColLibros librosDeBusqueda = new ColLibros();
+		try {
 			st = conectar();
 			rs = st.executeQuery(query);
 
-			while ( rs.next() ){
-				Libro nuevoLibro = new Libro ( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7) );
+			while (rs.next()) {
+				Libro nuevoLibro = new Libro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getDouble(6), rs.getInt(7));
 				librosDeBusqueda.add(nuevoLibro);
-			} 
+			}
 		}
-			
-		catch (SQLException e){
+
+		catch (SQLException e) {
 			System.out.println("SQLException en crear coleccion");
 		}
 		return librosDeBusqueda;
 	}
-		
-	public ColLibros BuscarTitulo (String busqueda){
-		
-		
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM "+BDDNAME+".libros WHERE titulo LIKE '%"+busqueda+"%';";
-		
-		
-		return this.CrearColeccion (query);
-		
+
+	public ColLibros BuscarTitulo(String busqueda) {
+
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM " + BDDNAME
+				+ ".libros WHERE titulo LIKE '%" + busqueda + "%';";
+
+		return this.CrearColeccion(query);
+
 	}
-	
-	public List<String> BuscarCategorias (){
+
+	public List<String> BuscarCategorias() {
 		List<String> misCategorias = new ArrayList<>();
 		Statement st = null;
 		ResultSet rs = null;
 		String query = "SELECT nombre FROM categorias;";
-		
-		try{
+
+		try {
 			st = conectar();
 			rs = st.executeQuery(query);
-			
-			while (rs.next()){
+
+			while (rs.next()) {
 				misCategorias.add(rs.getString(1));
 			}
-		}
-		catch (SQLException e){
+		} catch (SQLException e) {
 			System.out.println("SQLException en buscar categorias");
 		}
 		return misCategorias;
 	}
 
-	/** Metodo para busqueda de Libros por categoria*/
-	
-	public ColLibros BuscarLibrosCategoria (String busqueda){
-		
-		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad FROM "+BDDNAME+".libros, "+BDDNAME+".categorias WHERE categorias.nombre like '%"+busqueda+"%' AND libros.idCategorias=categorias.idCategorias;";
-		return this.CrearColeccion (query);
+	/** Metodo para busqueda de Libros por categoria */
+
+	public ColLibros BuscarLibrosCategoria(String busqueda) {
+
+		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad FROM " + BDDNAME
+				+ ".libros, " + BDDNAME + ".categorias WHERE categorias.nombre like '%" + busqueda
+				+ "%' AND libros.idCategorias=categorias.idCategorias;";
+		return this.CrearColeccion(query);
 	}
 
-    public void Alta(Libro libro){
-    	Statement st = null;
-    	try {
-        
-	        st =  conectar();
-	        String q = "INSERT INTO `libros` VALUES ('" + libro.getIdLibro() + "','" + libro.getIsbn() + "','" + libro.getTitulo() + "','" + libro.getDescripcion() + "','" + libro.getSinopsis() + "','" + libro.getImagen() +"','" + libro.getCantidad()+"','" + libro.getPrecio() +"')";
-	        int i = st.executeUpdate(q);
+	public void Alta(Libro libro) {
+		Statement st = null;
+		try {
 
-       
-	    } catch (SQLException ex) {
-	        System.out.println("SQLException");
-	    }
-    }
-    
-    public void Update(Libro libro) {
-        Statement st = null;
-        try {
-            st = conectar();
-            String q = "UPDATE `libros` SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo() + "',descripcion'" + libro.getDescripcion() + "',sinopsis'" + libro.getSinopsis() + "',imagen'" + libro.getImagen() +"',cantidad'" + libro.getCantidad()+"',precio'" + libro.getPrecio()+"' WHERE code='" + libro.getIdLibro() + "'";
-            System.out.println(q);
-            int i = st.executeUpdate(q);
+			st = conectar();
+			String q = "INSERT INTO `libros` VALUES ('" + libro.getIdLibro() + "','" + libro.getIsbn() + "','"
+					+ libro.getTitulo() + "','" + libro.getDescripcion() + "','" + libro.getSinopsis() + "','"
+					+ libro.getImagen() + "','" + libro.getCantidad() + "','" + libro.getPrecio() + "')";
+			int i = st.executeUpdate(q);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-   
-    public void Baja(String idlibro) {
-        Statement st = null;
-        try {
-            System.out.println("--- Dando de baja el codigo " + idlibro);
-            st=conectar();
-            String q = "delete from libros where idLibros ='" + idlibro + "'";
+		} catch (SQLException ex) {
+			System.out.println("SQLException");
+		}
+	}
 
-            int i = st.executeUpdate(q);
-            System.out.println(q + i);
-           
+	public void Update(Libro libro) {
+		Statement st = null;
+		try {
+			st = conectar();
+			String q = "UPDATE `libros` SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo()
+					+ "',descripcion'" + libro.getDescripcion() + "',sinopsis'" + libro.getSinopsis() + "',imagen'"
+					+ libro.getImagen() + "',cantidad'" + libro.getCantidad() + "',precio'" + libro.getPrecio()
+					+ "' WHERE code='" + libro.getIdLibro() + "'";
+			System.out.println(q);
+			int i = st.executeUpdate(q);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+		} catch (SQLException ex) {
+			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
-    }
+	public void Baja(String idlibro) {
+		Statement st = null;
+		try {
+			System.out.println("--- Dando de baja el codigo " + idlibro);
+			st = conectar();
+			String q = "delete from libros where idLibros ='" + idlibro + "'";
 
-    
-    
+			int i = st.executeUpdate(q);
+			System.out.println(q + i);
+
+		} catch (SQLException ex) {
+			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+	}
+
+	
+/*	
+	public ColLibros ListaLibrosBBDD() {
+
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM " + BDDNAME
+				+ ".libros;";
+
+		return this.CrearColeccion(query);
+	}
+*/
+	
+	
+	
+	
+	@Override
+	public ColLibros ListaLibrosBBDD() {
+
+		Statement st = null;
+		ResultSet rs = null;
+		ColLibros librosDeBusqueda = new ColLibros();
+
+		try {
+			st = conectar();
+			rs = st.executeQuery("SELECT * FROM librosasucasa.libros;");
+			System.out.println("executequery despues " + rs.toString());
+			while (rs.next()) {
+				
+				System.out.println("dentro de while rs ");
+						
+				Libro l = new Libro();
+				l.setIdLibro(rs.getInt("idLibros"));
+				l.setIsbn(rs.getString("isbn"));
+				l.setTitulo(rs.getString("titulo"));
+				l.setDescripcion(rs.getString("descripcion"));
+				l.setSinopsis(rs.getString("sinopsis"));
+				l.setCantidad(rs.getInt("cantidad"));
+				l.setPrecio(rs.getDouble("precio"));
+				
+				System.out.println("--> " + l.toString());
+				
+				librosDeBusqueda.add(l);
+			}
+		}
+
+		catch (SQLException e) {
+			System.out.println("SQLException en crear coleccion");
+		}
+		
+		return librosDeBusqueda;
+	}
+	
+	
+	
+	
+	
+	
+
 }
