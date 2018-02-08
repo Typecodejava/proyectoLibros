@@ -34,13 +34,8 @@ public class Datos implements InterfaceDatos {
 			System.out.println("ClassNotFound");
 			
 		}catch (SQLException e){
-			System.out.println("SQLException");
-		}finally{
-			try{
-				conex.close();
-			}catch(SQLException e){
-				System.out.println("SQL exception en el close");
-			}
+			System.out.println("SQLException en el conectar");
+
 		}
 		return st;
 	}
@@ -60,7 +55,6 @@ public class Datos implements InterfaceDatos {
 		try{
 			st = conectar();
 			rs = st.executeQuery(query);
-			
 
 			while ( rs.next() ){
 				Libro nuevoLibro = new Libro ( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getInt(7) );
@@ -69,7 +63,7 @@ public class Datos implements InterfaceDatos {
 		}
 			
 		catch (SQLException e){
-			System.out.println("SQLException");
+			System.out.println("SQLException en crear coleccion");
 		}
 		return librosDeBusqueda;
 	}
@@ -99,7 +93,7 @@ public class Datos implements InterfaceDatos {
 			}
 		}
 		catch (SQLException e){
-			System.out.println("SQLException");
+			System.out.println("SQLException en buscar categorias");
 		}
 		return misCategorias;
 	}
@@ -108,7 +102,7 @@ public class Datos implements InterfaceDatos {
 	
 	public ColLibros BuscarLibrosCategoria (String busqueda){
 		
-		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, cantidad, precio FROM "+BDDNAME+".libros, "+BDDNAME+".categorias WHERE categorias.nombre like '%"+busqueda+"%' AND libros.idCategorias=categorias.idCategorias;";
+		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad FROM "+BDDNAME+".libros, "+BDDNAME+".categorias WHERE categorias.nombre like '%"+busqueda+"%' AND libros.idCategorias=categorias.idCategorias;";
 		return this.CrearColeccion (query);
 	}
 

@@ -13,7 +13,5 @@ public interface InterfaceDatos {
 	public List<String> BuscarCategorias ();
 	public void Alta(Libro libro);
 	public void Update(Libro libro);
-	public void Baja( String idLibro);
-
-	
+	public void Baja( String idLibro);	
 }

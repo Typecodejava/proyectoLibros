@@ -90,7 +90,6 @@ public class Menu extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher(pagina);
 		view.forward(request, response);
-
 	}
 
 }
