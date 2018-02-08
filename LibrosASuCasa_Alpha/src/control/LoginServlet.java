@@ -32,6 +32,10 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("name", name); // en vez de name, se manda
 													// los datos de
 													// usuario.admin
+				//--->(IF)COMPROBACION DE LA OPERACION A REALIZAR
+				//(LO SIGUIENTE SIEMPRE SUCEDE)
+				//BUSCA LIBROS EN LA BASE DE DATOS
+				//VA A MAINBACKOFF.JSP
 				response.sendRedirect("AdminMenu");
 			} else {
 
