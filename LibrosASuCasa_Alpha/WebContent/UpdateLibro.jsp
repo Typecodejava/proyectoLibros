@@ -10,7 +10,7 @@
 	<div>
 		<h2>Alta de libro</h2>
 		<div>
-			<form action="LoginServlet?operacion=alta" method="post">
+			<form action="LoginServlet?operacion=update" method="post">
 				<table>
 					<tr>
 						<td>ISBN: </td><td><input type="text" name="isbn" value=${libro.isbn} maxlength="20" size="20"></td>

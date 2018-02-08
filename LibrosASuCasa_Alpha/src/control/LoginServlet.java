@@ -61,12 +61,22 @@ public class LoginServlet extends HttpServlet {
 				mostrar( request,  response, "altaLibro.jsp");
 			}
 			
-			else if(request.getParameter("operacion").equals("update"))	{
+			else if(request.getParameter("operacion").equals("mostrarupdate"))	{
 				String idlibros = request.getParameter("idlibro");
 				Libro libro=serv.BuscarLibro(idlibros);
 				request.setAttribute("libro", libro);
 				mostrar( request,  response, "UpdateLibro.jsp");
 			}
+			else if (request.getParameter("operacion").equals("update"))
+				List lista = new ArrayList<String>(); 
+				lista.add(request.getParameter("isbn"));
+				lista.add(request.getParameter("titulo"));
+				lista.add(request.getParameter("descripcion"));
+				lista.add(request.getParameter("sinopsis"));
+				lista.add(request.getParameter("precio"));
+				lista.add(request.getParameter("cantidad"));
+			
+			serv.Alta(lista);
 			
 			ColLibros libros =serv.ListaLibroBBDD();
 			
