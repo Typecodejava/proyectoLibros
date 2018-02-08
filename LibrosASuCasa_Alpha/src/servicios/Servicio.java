@@ -39,6 +39,13 @@ public class Servicio implements InterfaceServicio {
 		datos.Update(libro);
 	}
 
+	public void Baja( String idLibro){
+		datos.Baja(idLibro);	
+	}
+	
+	public Libro BuscarLibro (String idLibros){
+		return datos.BuscarLibro(idLibros).getLibros().get(0);
+
 	public void Baja(String idLibro) {
 		datos.Baja(idLibro);
 
@@ -49,4 +56,6 @@ public class Servicio implements InterfaceServicio {
 		return datos.ListaLibrosBBDD();};
 
 
+
+}
 }

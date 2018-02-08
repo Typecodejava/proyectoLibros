@@ -37,13 +37,13 @@
 					<tbody>
                         <c:forEach var="libros" items="${libros}">
                             <tr>
-                            	<td>${libros.idLibros}</td>
+                            	<td>${libros.idLibro}</td>
                                 <td>${libros.isbn}</td>
                                 <td>${libros.titulo}</td>
                                 <td>${libros.precio}</td>
                                 <td>${libros.cantidad}</td>
-                                <td><a href="LoginServlet?operacion=modificacion&idLibros=${libros.idLibros}">Modificar</a></td>
-                                <td><a href="LoginServlet?operacion=baja&idLibros=${libros.idLibros}">Eliminar</a></td>
+                                <td><a href="LoginServlet?operacion=update&idlibro=${libros.idLibro}">Modificar</a></td>
+                                <td><a href="LoginServlet?operacion=baja&idlibro=${libros.idLibro}">Eliminar</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -55,7 +55,7 @@
 			</c:choose>
 	</div>
 	<div>
-		<a href="LoginServlet?operacion=alta">Añadir libro a la base de datos.</a>
+		<a href="LoginServlet?operacion=mostraralta">Añadir libro a la base de datos.</a>
 	</div>
 </body>
 </html>
