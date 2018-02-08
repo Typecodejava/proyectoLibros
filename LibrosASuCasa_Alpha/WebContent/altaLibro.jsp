@@ -10,7 +10,7 @@
 	<div>
 		<h2>Alta de libro</h2>
 		<div>
-			<form action="LoginServlet?operacion=alta" method="post">
+			<form action="LoginServlet" method="post">
 				<table>
 					<tr>
 						<td>ISBN: </td><td><input type="text" name="isbn" maxlength="20" size="20"></td>
@@ -26,6 +26,8 @@
 						<td>Precio: </td><td><input type="text" name="precio" maxlength="5" size="4"></td>
 						<td>Cantidad: </td><td><input type="text" name="cantidad" maxlength="6" size="4"></td>
 				</table>
+				<input type="hidden" name="operacion" value="alta" />		
+				<input type="submit" value="Enviar ">
 			</form>
 		</div>
 	</div>

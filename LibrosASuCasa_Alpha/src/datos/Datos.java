@@ -48,6 +48,15 @@ public class Datos implements InterfaceDatos {
 		
 	}
 	
+	//metodo que llama BD y devuelve un libro
+	public ColLibros BuscarLibro(String busqueda){
+		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM "+BDDNAME+".libros WHERE libros.idLibros LIKE '%"+busqueda+"%';";  
+
+		return this.CrearColeccion (query);
+		
+	}
+	
+	
 	public ColLibros CrearColeccion (String query){
 		Statement st = null;
 		ResultSet rs = null;

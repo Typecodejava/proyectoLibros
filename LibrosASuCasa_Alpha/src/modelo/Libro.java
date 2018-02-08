@@ -76,6 +76,9 @@ public class Libro {
 		this.precio = precio;
 		this.cantidad=cantidad;
 	} 
+	public Libro(String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad){
+		
+	}
 	
 
 	public Libro(){

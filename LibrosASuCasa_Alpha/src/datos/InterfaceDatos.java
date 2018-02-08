@@ -14,4 +14,5 @@ public interface InterfaceDatos {
 	public void Alta(Libro libro);
 	public void Update(Libro libro);
 	public void Baja( String idLibro);	
+	public ColLibros BuscarLibro(String string); 
 }
