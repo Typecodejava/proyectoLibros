@@ -27,7 +27,7 @@
 						<td>Cantidad: </td><td><input type="text" name="cantidad" value=${libro.cantidad} maxlength="6" size="4"></td>
 				</table>
 			</form>
-		</div>
+		</div> 
 	</div>
 </body>
 </html>

@@ -20,7 +20,7 @@
 
 						<p>DESCRIPCION: ${libro.descripcion}</p>
 
-						<p>PRECIO: ${libro.precio}€</p>
+						<p>PRECIO: ${libro.precio}€</p> 
 
 						<p>SINOPSIS: ${libro.sinopsis}</p></li>
 
