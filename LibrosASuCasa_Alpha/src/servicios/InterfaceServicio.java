@@ -11,7 +11,7 @@ public interface InterfaceServicio {
 	public List<String> BuscarCategorias ();
 	public void Alta(List<String> lista);
 	public void Update(List<String> lista);
-	public void Baja( String idLibro);
+	public void Baja(String idLibro);
 	public Libro BuscarLibro (String string);
 
 	public ColLibros MostrarLibrosBBDD();
