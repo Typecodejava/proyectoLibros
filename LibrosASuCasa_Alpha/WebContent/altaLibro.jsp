@@ -12,7 +12,13 @@
 		<div>
 			<form action="AdminMenu?operacion=alta" method="post">
 				<table border=1>
-					<tr>Título: </tr><tr><input type="text" name="titulo" size=44></tr>
+					<tr>
+						<td>ISBN: </td><td><input type="text" name="isbn" maxlength="20" size="20"></td>
+						<td>Título: </td><td><input type="text" name="titulo" maxlength="44" size="30"></td>
+						<td>Descripcion: </td><td><input type="text" name="titulo" size="60"></td>
+						<td>Sinopsis: </td><td><input type="text" name="titulo" maxlength="44"></td>
+						<td>Precio: </td><td><input type="text" name="titulo" maxlength="44"></td>
+						<td>Cantidad: </td><td><input type="text" name="titulo" maxlength="44"></td>
 				</table>
 			</form>
 		</div>
