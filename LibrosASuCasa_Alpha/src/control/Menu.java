@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ColLibros;
+import modelo.Libro;
 import servicios.Servicio;
 import servicios.InterfaceServicio;
 
@@ -55,7 +56,12 @@ public class Menu extends HttpServlet {
 			request.setAttribute("categorias", categorias);
 			mostrar(request, response, "resultadoBusqueda.jsp");
 
+		} else if (request.getParameter("operacion").equals("mostrarlibro")) {
+			Libro libro = serv.BuscarLibro(request.getParameter("idlibro"));
+			request.setAttribute("libro", libro);
+			mostrar(request, response, "detalleLibro.jsp");
 		}
+
 		System.out.println("--- esta dentro de senredirectu ---");
 		List<String> categorias;
 		categorias = serv.BuscarCategorias();
