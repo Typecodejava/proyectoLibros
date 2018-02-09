@@ -12,7 +12,7 @@ public class Libro {
 	private String sinopsis; 
 	private double precio;
 	private int cantidad;
-	private Blob imagen;
+	private String imagen;
 	
 	
 	public int getIdLibro() {
@@ -60,13 +60,13 @@ public class Libro {
 	}
 	
 	
-	public Blob getImagen() {
+	public String getImagen() {
 		return imagen;
 	}
-	public void setImagen(Blob imagen) {
+	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad) {
+	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad, String imagen) {
 		super();
 		this.idLibro = idLibro;
 		this.isbn = isbn;
@@ -75,6 +75,7 @@ public class Libro {
 		this.sinopsis = sinopsis;
 		this.precio = precio;
 		this.cantidad=cantidad;
+		this.imagen = imagen;
 	} 
 	public Libro(String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad){
 		
