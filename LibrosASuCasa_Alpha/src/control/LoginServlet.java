@@ -50,6 +50,11 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("libros", libros.getLibros());
 
 				mostrar(request, response, "mainBackOff.jsp");
+			} else {
+				String error = "Error, has introducido mal la Contraseña o Usuario!! Vuelve a intentarlo...";
+				request.setAttribute("Error", error);
+				mostrar(request, response, "login.jsp");
+				
 			}
 		}catch(
 
