@@ -41,9 +41,11 @@ public class LoginServlet extends HttpServlet {
 
 			if (password.equals("admin123")) {
 				// inicio sesion como admin
+
 				HttpSession miSesion = request.getSession(true);
 				miSesion.setAttribute("password", password);
 			
+
 				ColLibros libros = serv.MostrarLibrosBBDD();
 				request.setAttribute("libros", libros.getLibros());
 

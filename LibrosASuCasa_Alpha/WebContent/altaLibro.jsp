@@ -23,8 +23,8 @@
 						<td>Sinopsis: </td><td colspan="3"><textarea name="sinopsis" cols="50"></textarea></td>
 					</tr>
 					<tr>
-						<td>Precio: </td><td><input type="text" name="precio" maxlength="5" size="4"></td>
-						<td>Cantidad: </td><td><input type="text" name="cantidad" maxlength="6" size="4"></td>
+						<td>Precio: </td><td><input type="text" name="precio" maxlength="5" size="4"> Cantidad: <input type="text" name="cantidad" maxlength="6" size="4"></td>
+						<td>Imagen: </td><td><input type="file" name="imagen"></td>
 				</table>
 				<input type="hidden" name="operacion" value="alta" />		
 				<input type="submit" value="Enviar ">

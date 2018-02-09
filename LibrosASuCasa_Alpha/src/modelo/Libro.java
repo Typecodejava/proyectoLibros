@@ -12,7 +12,8 @@ public class Libro {
 	private String sinopsis; 
 	private double precio;
 	private int cantidad;
-	private Blob imagen;
+	private String imagen;
+	private String autor;
 	
 	
 	public int getIdLibro() {
@@ -59,14 +60,21 @@ public class Libro {
 		this.cantidad = cantidad;
 	}
 	
+	public String getAutor() {
+		return this.autor;
+	}
 	
-	public Blob getImagen() {
+	public void setAutor(String autor){
+		this.autor = autor;
+	}
+	
+	public String getImagen() {
 		return imagen;
 	}
-	public void setImagen(Blob imagen) {
+	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad) {
+	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad, String imagen, String autor) {
 		super();
 		this.idLibro = idLibro;
 		this.isbn = isbn;
@@ -75,6 +83,19 @@ public class Libro {
 		this.sinopsis = sinopsis;
 		this.precio = precio;
 		this.cantidad=cantidad;
+		this.imagen = imagen;
+		this.autor = autor;
+	} 
+	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad, String imagen) {
+		super();
+		this.idLibro = idLibro;
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.sinopsis = sinopsis;
+		this.precio = precio;
+		this.cantidad=cantidad;
+		this.imagen = imagen;
 	} 
 	public Libro(String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad){
 		
@@ -87,7 +108,7 @@ public class Libro {
 	@Override
 	public String toString() {
 		return "Libro [idLibro=" + idLibro + ", isbn=" + isbn + ", titulo=" + titulo + ", descripcion=" + descripcion
-				+ ", sinopsis=" + sinopsis + ", precio=" + precio + "]";
+				+ ", sinopsis=" + sinopsis + ", precio=" + precio + " autor= "+ autor + "]";
 	}
 	
 	
