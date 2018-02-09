@@ -42,9 +42,8 @@ public class Datos implements InterfaceDatos {
 	}
 
 	public ColLibros BuscarAutor(String busqueda) {
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen FROM " + BDDNAME
-				+ ".libros WHERE libros.idautores IN (SELECT autores.idautores FROM " + BDDNAME
-				+ ".autores WHERE nombre LIKE '%" + busqueda + "%' or apellido LIKE '%" + busqueda + "%');";
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM " + BDDNAME
+				+ ".libros, "+BDDNAME+".autores WHERE autores.idautores = libros.idautores AND LIKE '%" + busqueda + "%' or apellido LIKE '%" + busqueda + "%');";
 
 		return this.CrearColeccion(query);
 
@@ -53,7 +52,8 @@ public class Datos implements InterfaceDatos {
 	
 	//metodo que llama BD y devuelve un libro
 	public ColLibros BuscarLibro(String busqueda){
-		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen FROM "+BDDNAME+".libros WHERE libros.idLibros LIKE '%"+busqueda+"%';";  
+		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "+BDDNAME+".libros, "+BDDNAME+".autores "
+				+ "WHERE libros.idLibros LIKE '%"+busqueda+"% AND autores.idautores = libros.idautores';";  
 
 		return this.CrearColeccion (query);
 		
@@ -71,7 +71,7 @@ public class Datos implements InterfaceDatos {
 
 			while (rs.next()) {
 				Libro nuevoLibro = new Libro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getDouble(6), rs.getInt(7), rs.getString(8));
+						rs.getString(5), rs.getDouble(6), rs.getInt(7), rs.getString(8), rs.getString(9));
 				librosDeBusqueda.add(nuevoLibro);
 			}
 		}
@@ -84,8 +84,8 @@ public class Datos implements InterfaceDatos {
 
 	public ColLibros BuscarTitulo(String busqueda) {
 
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen FROM " + BDDNAME
-				+ ".libros WHERE titulo LIKE '%" + busqueda + "%';";
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM " + BDDNAME
+				+ ".libros, " + BDDNAME + ".autores WHERE libros.idautores = autores.idautores AND titulo LIKE '%" + busqueda + "%';";
 
 		return this.CrearColeccion(query);
 
@@ -114,9 +114,9 @@ public class Datos implements InterfaceDatos {
 
 	public ColLibros BuscarLibrosCategoria(String busqueda) {
 
-		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad, imagen FROM " + BDDNAME
-				+ ".libros, " + BDDNAME + ".categorias WHERE categorias.nombre like '%" + busqueda
-				+ "%' AND libros.idCategorias=categorias.idCategorias;";
+		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad, imagen, autores.nombre FROM " + BDDNAME
+				+ ".libros, " + BDDNAME + ".categorias, " + BDDNAME + ".autores WHERE categorias.nombre like '%" + busqueda
+				+ "%' AND libros.idCategorias=categorias.idCategorias AND autores.idautores = libros.idautores;";
 		return this.CrearColeccion(query);
 	}
 
@@ -174,8 +174,8 @@ public class Datos implements InterfaceDatos {
 	@Override
 	public ColLibros ListaLibrosBBDD() {
 
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen FROM " + BDDNAME
-				+ ".libros;";
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM " + BDDNAME
+				+ ".libros, " + BDDNAME + ".autores WHERE libros.idautores = autores.idautores;";
 
 		return this.CrearColeccion(query);
 	}
