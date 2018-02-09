@@ -53,17 +53,20 @@ public class LoginServlet2 extends HttpServlet {
 					String name = (String) session.getAttribute("password");
 
 					System.out.println("Hello, " + name + " Welcome to Profile");
-
+					
 					if (request.getParameter("operacion") != null) {
+						
 						if (request.getParameter("operacion").equals("alta")) {
 							List<String> lista = new ArrayList<>();
-
+							
 							lista.add(request.getParameter("isbn"));
 							lista.add(request.getParameter("titulo"));
 							lista.add(request.getParameter("descripcion"));
 							lista.add(request.getParameter("sinopsis"));
 							lista.add(request.getParameter("precio"));
 							lista.add(request.getParameter("cantidad"));
+							lista.add(request.getParameter("imagen"));
+							
 							serv.Alta(lista);
 						} else if (request.getParameter("operacion").equals("mostraralta")) {
 							mostrar(request, response, "altaLibro.jsp");
@@ -77,25 +80,29 @@ public class LoginServlet2 extends HttpServlet {
 						} else if (request.getParameter("operacion").equals("update")) {
 							List<String> lista1;
 							lista1 = new ArrayList<>();
+							System.out.println("idlibro"+request.getParameter("idLibro"));
+							lista1.add(request.getParameter("idLibro"));
 							lista1.add(request.getParameter("isbn"));
 							lista1.add(request.getParameter("titulo"));
 							lista1.add(request.getParameter("descripcion"));
 							lista1.add(request.getParameter("sinopsis"));
 							lista1.add(request.getParameter("precio"));
 							lista1.add(request.getParameter("cantidad"));
+							lista1.add(request.getParameter("imagen"));
 							serv.Update(lista1);
 						}
 					}
 
-					ColLibros libros = serv.MostrarLibrosBBDD();
-					request.setAttribute("libros", libros.getLibros());
-
-					mostrar(request, response, "mainBackOff.jsp");
+					
 					// --->(IF)COMPROBACION DE LA OPERACION A REALIZAR
 					// (LO SIGUIENTE SIEMPRE SUCEDE)
 					// BUSCA LIBROS EN LA BASE DE DATOS
 					// VA A MAINBACKOFF.JSP
 				}
+				ColLibros libros = serv.MostrarLibrosBBDD();
+				request.setAttribute("libros", libros.getLibros());
+
+				mostrar(request, response, "mainBackOff.jsp");
 			}
 
 		} catch (

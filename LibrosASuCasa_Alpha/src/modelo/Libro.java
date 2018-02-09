@@ -108,8 +108,10 @@ public class Libro {
 	@Override
 	public String toString() {
 		return "Libro [idLibro=" + idLibro + ", isbn=" + isbn + ", titulo=" + titulo + ", descripcion=" + descripcion
-				+ ", sinopsis=" + sinopsis + ", precio=" + precio + " autor= "+ autor + "]";
+				+ ", sinopsis=" + sinopsis + ", precio=" + precio + ", cantidad=" + cantidad + ", imagen=" + imagen
+				+ ", autor=" + autor + "]";
 	}
+	
 	
 	
 
