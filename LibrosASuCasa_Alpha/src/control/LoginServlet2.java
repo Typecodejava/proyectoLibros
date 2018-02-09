@@ -50,9 +50,9 @@ public class LoginServlet2 extends HttpServlet {
 				if (nombreUsuario.equals("admin123")) {
 					System.out.println("-------usuarios validado");
 
-					String name = (String) session.getAttribute("password");
+					//String name = (String) session.getAttribute("password");
 
-					System.out.println("Hello, " + name + " Welcome to Profile");
+					System.out.println("Hello, " + nombreUsuario + " Welcome to Profile");
 
 					if (request.getParameter("operacion") != null) {
 						if (request.getParameter("operacion").equals("alta")) {

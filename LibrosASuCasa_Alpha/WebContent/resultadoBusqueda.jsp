@@ -188,7 +188,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<c:forEach items="${Listalibros}" var="libro" begin="0">
 						<div class="row">
 							<div class="col-2">
-								<p>imagen ${libro.imagen }</p>
+								<br>
+							  	<img src="<c:url value='${libro.imagen }'/>" height="200" width="150"/>
+							  	<br>
 							</div>
 
 							<div class="col-5">
