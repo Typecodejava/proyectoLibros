@@ -51,6 +51,8 @@ public class Menu extends HttpServlet {
 			request.setAttribute("Listalibros", libros.getLibros());
 
 			// - Ceder control
+			List<String> categorias = serv.BuscarCategorias();
+			request.setAttribute("categorias", categorias);
 			mostrar(request, response, "resultadoBusqueda.jsp");
 
 		}
