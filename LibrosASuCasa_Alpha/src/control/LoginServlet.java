@@ -24,10 +24,9 @@ public class LoginServlet extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("--- dentro del servlet Login");
-		
-		InterfaceServicio serv = new Servicio(); 
-		
-		
+
+		InterfaceServicio serv = new Servicio();
+
 		try {
 
 			// Paso 01
@@ -40,51 +39,52 @@ public class LoginServlet extends HttpServlet {
 			if (password.equals("admin123")) {
 				// inicio sesion como admin
 				HttpSession session = request.getSession();
+				System.out.println("consigo sesion");
 				session.setAttribute("name", name); // en vez de name, se manda
 													// los datos de
 													// usuario.admin
-				
-			
-			if(request.getParameter("operacion").equals("alta")){
-				List<String> lista = new ArrayList<>(); 
-				
-				lista.add(request.getParameter("isbn"));
-				lista.add(request.getParameter("titulo"));
-				lista.add(request.getParameter("descripcion"));
-				lista.add(request.getParameter("sinopsis"));
-				lista.add(request.getParameter("precio"));
-				lista.add(request.getParameter("cantidad"));
-				serv.Alta(lista);
-			}else if(request.getParameter("operacion").equals("mostraralta")){
-				mostrar( request,  response, "altaLibro.jsp");
-			}
-			
-			else if(request.getParameter("operacion").equals("mostrarupdate"))	{
-				String idlibros = request.getParameter("idlibro");
-				Libro libro=serv.BuscarLibro(idlibros);
-				request.setAttribute("libro", libro);
-				mostrar( request,  response, "UpdateLibro.jsp");
-			}
-			else if (request.getParameter("operacion").equals("update")){
-				List<String> lista1;
-				lista1 = new ArrayList<>(); 
-				lista1.add(request.getParameter("isbn"));
-				lista1.add(request.getParameter("titulo"));
-				lista1.add(request.getParameter("descripcion"));
-				lista1.add(request.getParameter("sinopsis"));
-				lista1.add(request.getParameter("precio"));
-				lista1.add(request.getParameter("cantidad"));
-				serv.Update(lista1);
-			}
-			
-			ColLibros libros =serv.MostrarLibrosBBDD();
-			
-			
-			mostrar( request,  response, "mainBackOff.jsp");
-				//--->(IF)COMPROBACION DE LA OPERACION A REALIZAR
-				//(LO SIGUIENTE SIEMPRE SUCEDE)
-				//BUSCA LIBROS EN LA BASE DE DATOS
-				//VA A MAINBACKOFF.JSP
+				System.out.println("guardo nombre " + request.getParameter("operacion"));
+				if (request.getParameter("operacion") != null) {
+					if (request.getParameter("operacion").equals("alta")) {
+						List<String> lista = new ArrayList<>();
+
+						lista.add(request.getParameter("isbn"));
+						lista.add(request.getParameter("titulo"));
+						lista.add(request.getParameter("descripcion"));
+						lista.add(request.getParameter("sinopsis"));
+						lista.add(request.getParameter("precio"));
+						lista.add(request.getParameter("cantidad"));
+						serv.Alta(lista);
+					} else if (request.getParameter("operacion").equals("mostraralta")) {
+						mostrar(request, response, "altaLibro.jsp");
+					}
+
+					else if (request.getParameter("operacion").equals("mostrarupdate")) {
+						String idlibros = request.getParameter("idlibro");
+						Libro libro = serv.BuscarLibro(idlibros);
+						request.setAttribute("libro", libro);
+						mostrar(request, response, "UpdateLibro.jsp");
+					} else if (request.getParameter("operacion").equals("update")) {
+						List<String> lista1;
+						lista1 = new ArrayList<>();
+						lista1.add(request.getParameter("isbn"));
+						lista1.add(request.getParameter("titulo"));
+						lista1.add(request.getParameter("descripcion"));
+						lista1.add(request.getParameter("sinopsis"));
+						lista1.add(request.getParameter("precio"));
+						lista1.add(request.getParameter("cantidad"));
+						serv.Update(lista1);
+					}
+				}
+				System.out.println("llega aqui 2");
+				ColLibros libros = serv.MostrarLibrosBBDD();
+				request.setAttribute("libros", libros.getLibros());
+
+				mostrar(request, response, "mainBackOff.jsp");
+				// --->(IF)COMPROBACION DE LA OPERACION A REALIZAR
+				// (LO SIGUIENTE SIEMPRE SUCEDE)
+				// BUSCA LIBROS EN LA BASE DE DATOS
+				// VA A MAINBACKOFF.JSP
 			} else {
 
 				String mensaje = "error loco, has metido mal la contra!!";
@@ -118,6 +118,7 @@ public class LoginServlet extends HttpServlet {
 	public String getServletInfo() {
 		return "Short description";
 	}// </editor-fold>
+
 	protected void mostrar(HttpServletRequest request, HttpServletResponse response, String pagina)
 			throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher(pagina);
