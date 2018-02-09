@@ -16,7 +16,6 @@ import modelo.ColLibros;
 import servicios.Servicio;
 import servicios.InterfaceServicio;
 
-
 @WebServlet("/Menu")
 public class Menu extends HttpServlet {
 
@@ -27,46 +26,39 @@ public class Menu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		System.out.println("--- dentro del servlet Menu ---");
-		InterfaceServicio serv=new Servicio();
-		
-		
-		if ((request.getParameter("operacion").equals("busqueda"))){
-			ColLibros libros = new ColLibros ();
-			if ( request.getParameter("lib_titulo") != null ){
+		InterfaceServicio serv = new Servicio();
+
+		if ((request.getParameter("operacion").equals("busqueda"))) {
+			ColLibros libros = new ColLibros();
+			if (request.getParameter("lib_titulo") != null) {
 				// Paso 01
 				// - Recoger informacion
 				// - Guardarla en objeto
-				libros=serv.BuscarTitulo(request.getParameter("lib_titulo"));
-			}
-			else if ( request.getParameter("lib_autor") != null ){
+				libros = serv.BuscarTitulo(request.getParameter("lib_titulo"));
+			} else if (request.getParameter("lib_autor") != null) {
 				// Paso 01
 				// - Recoger informacion
 				// - Guardarla en objeto
-				libros=serv.BuscarAutor(request.getParameter("lib_autor"));
+				libros = serv.BuscarAutor(request.getParameter("lib_autor"));
 			}
-		
-				//guardo la informacion	lib_categoria
-			else if (request.getParameter("lib_categoria")!=null){
-				libros=serv.BuscarLibrosCategoria(request.getParameter("lib_categoria"));
+
+			// guardo la informacion lib_categoria
+			else if (request.getParameter("lib_categoria") != null) {
+				libros = serv.BuscarLibrosCategoria(request.getParameter("lib_categoria"));
 			}
-				request.setAttribute("Listalibros", libros.getLibros());
+			request.setAttribute("Listalibros", libros.getLibros());
 
-				// - Ceder control
-				mostrar(request, response,"resultadoBusqueda.jsp");
+			// - Ceder control
+			mostrar(request, response, "resultadoBusqueda.jsp");
 
-		
-		} else if (request.getParameter("operacion").equals("mostrarcategoria")){
-			System.out.println("--- esta dentro de senredirectu ---");
-			List<String> categorias;
-			categorias=serv.BuscarCategorias();
-			request.setAttribute("categorias", categorias);
-			mostrar(request, response,"paginaprincipal.jsp");
 		}
-		
-		
-
+		System.out.println("--- esta dentro de senredirectu ---");
+		List<String> categorias;
+		categorias = serv.BuscarCategorias();
+		request.setAttribute("categorias", categorias);
+		mostrar(request, response, "paginaprincipal.jsp");
 	}
 
 	@Override

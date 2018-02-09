@@ -168,54 +168,16 @@ public class Datos implements InterfaceDatos {
 	}
 
 	
-/*	
-	public ColLibros ListaLibrosBBDD() {
-
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM " + BDDNAME
-				+ ".libros;";
-
-		return this.CrearColeccion(query);
-	}
-*/
-	
 	
 	
 	
 	@Override
 	public ColLibros ListaLibrosBBDD() {
 
-		Statement st = null;
-		ResultSet rs = null;
-		ColLibros librosDeBusqueda = new ColLibros();
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad FROM " + BDDNAME
+				+ ".libros;";
 
-		try {
-			st = conectar();
-			rs = st.executeQuery("SELECT * FROM librosasucasa.libros;");
-			System.out.println("executequery despues " + rs.toString());
-			while (rs.next()) {
-				
-				System.out.println("dentro de while rs ");
-						
-				Libro l = new Libro();
-				l.setIdLibro(rs.getInt("idLibros"));
-				l.setIsbn(rs.getString("isbn"));
-				l.setTitulo(rs.getString("titulo"));
-				l.setDescripcion(rs.getString("descripcion"));
-				l.setSinopsis(rs.getString("sinopsis"));
-				l.setCantidad(rs.getInt("cantidad"));
-				l.setPrecio(rs.getDouble("precio"));
-				
-				System.out.println("--> " + l.toString());
-				
-				librosDeBusqueda.add(l);
-			}
-		}
-
-		catch (SQLException e) {
-			System.out.println("SQLException en crear coleccion");
-		}
-		
-		return librosDeBusqueda;
+		return this.CrearColeccion(query);
 	}
 	
 	
