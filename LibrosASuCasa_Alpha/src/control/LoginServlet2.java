@@ -84,6 +84,10 @@ public class LoginServlet2 extends HttpServlet {
 							lista1.add(request.getParameter("precio"));
 							lista1.add(request.getParameter("cantidad"));
 							serv.Update(lista1);
+						}else if(request.getParameter("operacion").equals("baja")){
+							//elimino una fila de la BBDD libro
+							String idlibros = request.getParameter("idlibro");
+							serv.Baja(idlibros);
 						}
 					}
 
