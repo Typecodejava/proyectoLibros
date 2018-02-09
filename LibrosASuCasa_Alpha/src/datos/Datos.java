@@ -180,11 +180,7 @@ public class Datos implements InterfaceDatos {
 			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-	}
-
-	
-	
-	
+	}	
 	
 	@Override
 	public ColLibros ListaLibrosBBDD() {
@@ -194,8 +190,6 @@ public class Datos implements InterfaceDatos {
 
 		return this.CrearColeccion(query);
 	}
-	
-	
 	
 	
 	
