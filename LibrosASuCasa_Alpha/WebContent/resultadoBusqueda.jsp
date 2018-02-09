@@ -193,7 +193,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 							<div class="col-5">
 								<p>--------------------------------------------------------------------------------------------</p>
-								<p>TITULO: ${libro.titulo}</p>
+								
+								<p><a href="Menu?operacion=mostrarlibro&idlibro=${libro.idLibro}"><b>TITULO: ${libro.titulo}</b></a></p>
 									<p>ISBN: ${libro.isbn}</p>
 
 									<p>resto de campos</p>

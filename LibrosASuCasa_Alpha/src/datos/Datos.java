@@ -52,9 +52,10 @@ public class Datos implements InterfaceDatos {
 	
 	//metodo que llama BD y devuelve un libro
 	public ColLibros BuscarLibro(String busqueda){
-		String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "+BDDNAME+".libros, "+BDDNAME+".autores "
-				+ "WHERE libros.idLibros LIKE '%"+busqueda+"% AND autores.idautores = libros.idautores';";  
 
+		//String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "+BDDNAME+".libros, "+BDDNAME+".autores "
+		//		+ "WHERE libros.idLibros LIKE '%"+busqueda+"% AND autores.idautores = libros.idautores';";  
+		String query="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM libros, autores WHERE libros.idLibros LIKE'"+busqueda+"'  AND autores.idautores = libros.idautores;";
 		return this.CrearColeccion (query);
 		
 	}
@@ -65,13 +66,27 @@ public class Datos implements InterfaceDatos {
 		Statement st = null;
 		ResultSet rs = null;
 		ColLibros librosDeBusqueda = new ColLibros();
+
 		try {
 			st = conectar();
+
 			rs = st.executeQuery(query);
 
 			while (rs.next()) {
+				System.out.println(rs.getInt(1));
+				System.out.println(rs.getString(2));
+				System.out.println(rs.getString(3));
+				System.out.println(rs.getString(4));
+				System.out.println(rs.getString(5));
+				System.out.println(rs.getDouble(6));
+				System.out.println(rs.getInt(7));
+				System.out.println(rs.getString(8));
+				System.out.println(rs.getString(9));
 				Libro nuevoLibro = new Libro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getDouble(6), rs.getInt(7), rs.getString(8), rs.getString(9));
+				
+				
+				
 				librosDeBusqueda.add(nuevoLibro);
 			}
 		}
