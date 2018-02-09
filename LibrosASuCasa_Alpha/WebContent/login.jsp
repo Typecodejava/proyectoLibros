@@ -30,6 +30,7 @@
 
 	<P>${Error}</P>
 
+
 	<p>
 		<a href="paginaprincipal.jsp">Volver a la pagina principal</a>
 	</p>
