@@ -198,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 									<p>resto de campos</p>
 							</div>
-							<div class="col-5 mid">
+							<div class="col-5">
 								<p>precio: ${libro.precio }€</p>
 								<form action="/Menu">
 									<input type="hidden" name="operacion" value="anadircarrito">
@@ -214,121 +214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</c:choose>
 		</div>
 	</div>
-	<!-- <h1>LIBROS CON COINCIDENCIA</h1>
-			<div class="mod-list-bigpic mod-libros-formato01 style01">
-
-				<div class="mod-list-item">
-
-					<div class="img w3l_banner_nav_left">
-						<div class="product-item">
-							<a
-								href="/libro-nuevas-rimas-de-gustavo-adolfo-becquer/9788492942008/1698783"
-								title="NUEVAS RIMAS DE GUSTAVO ADOLFO BECQUER AGUSTIN PORRAS"
-								id="1698783" class="cover-wrapper"> <img
-								src="https://imagessl8.casadellibro.com/a/l/t3/08/9788492942008.jpg"
-								alt="NUEVAS RIMAS DE GUSTAVO ADOLFO BECQUER AGUSTIN PORRAS"
-								width="75" height="115"
-								title="NUEVAS RIMAS DE GUSTAVO ADOLFO BECQUER AGUSTIN PORRAS"
-								class="img-shadow" style="display: inline;"> <span
-								id="etiquetas1698783"></span>
-
-
-							</a>
-							<div class="clear"></div>
-							<div class="item-btn event-anadir-compra">
-								<input id="idProducto" type="hidden" value="1698783"> <a
-									class="btn02 purchase-button" data-type="anadir-a-carrito"
-									data-id="1698783" id="prVisible1698783" href="#"><span>Añadir</span></a>
-								<a class="btn02 btn02-edit" id="prOculto1698783"
-									style="visibility: hidden; display: none" href="#"><span>Editar</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="txt w3l_banner_nav_right">
-						<div id="precioMinGar1698783" class="txtred mbt5 hidden"></div>
-
-						<input type="hidden" name="titPro1698783" id="titPro1698783"
-							value="NUEVAS RIMAS DE GUSTAVO ADOLFO BECQUER-9788492942008">
-						<input type="hidden" name="nextUrlCompra1698783"
-							id="nextUrlCompra1698783"
-							value="/comprar-libro/nuevas-rimas-de-gustavo-adolfo-becquer/9788492942008/1698783">
-
-
-						<a id="resultBusqGenerica-1-31.287542" class="title-link"
-							href="/libro-nuevas-rimas-de-gustavo-adolfo-becquer/9788492942008/1698783"
-							onclick="javascript:addOri('br')" data-id="1698783">${titulo}</a>
-
-
-						<div class="mod-libros-author">
-							<a class="author-link"
-								href="/libros-ebooks/agustin-porras/113831">AGUSTIN PORRAS</a>
-						</div>
-
-
-						<div class="mod-libros-editorial">
-
-
-							OLIFANTE EDICIONES DE POESIA, <span>2010</span>
-						</div>
-
-						<div class="clear antesSinopsis-1698783"></div>
-						<div class="stars">
-							<div class="clear"></div>
-						</div>
-						<div class="info">
-							</ul>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="txt-right">
-						<div class="price-type-box">
-
-							<p class="priceOriginal">${otra cosa }</p>
-
-
-						</div>
-						<div class="btn" id="botoncompra1698783"
-						
-							style="visibility: visible; display: block;">
-							<p class="priceOriginal">${precio }</p>
-							<a href="#"
-								onclick="trackCapa('busqueda','1698783');anadirProdCompra('1698783','1','add','0','idPortada1698783');return false"
-								class="btn07compra purchase-button" data-type="anadir-a-carrito"
-								data-id="1698783">Comprar</a>
-						</div>
-
-
-					</div>
-
-					<div class="clear"></div>
-				</div>
-
-
-			</div>
-
-
-			-->
-	<ul style="list-style-type: circle">
-
-		<c:choose>
-			<c:when test="${Listalibros.isEmpty()}">
-				<p>No se ha encontrado libro</p>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${Listalibros}" var="libro" begin="0">
-					<p>----------------------------------------------------------------------------------------------------------------------------------------------</p>
-					<li><P>TITULO: ${libro.titulo}</P>
-						<p>ISBN: ${libro.isbn}</p>
-
-						<p>DESCRIPCION: ${libro.descripcion}</p>
-
-						<p>PRECIO: ${libro.precio}€</p>
-
-						<p>SINOPSIS: ${libro.sinopsis}</p></li>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-	</ul>
+	
 	</div>
 </body>
 </html>
