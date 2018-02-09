@@ -42,8 +42,8 @@
                                 <td>${libros.titulo}</td>
                                 <td>${libros.precio}</td>
                                 <td>${libros.cantidad}</td>
-                                <td><a href="LoginServlet?operacion=mostrarupdate&idlibro=${libros.idLibro}">Modificar</a></td>
-                                <td><a href="LoginServlet?operacion=baja&idlibro=${libros.idLibro}">Eliminar</a></td>
+                                <td><a href="LoginServlet2?operacion=mostrarupdate&idlibro=${libros.idLibro}">Modificar</a></td>
+                                <td><a href="LoginServlet2?operacion=baja&idlibro=${libros.idLibro}">Eliminar</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -55,7 +55,7 @@
 			</c:choose>
 	</div>
 	<div>
-		<a href="LoginServlet?operacion=mostraralta">Añadir libro a la base de datos.</a>
+		<a href="LoginServlet2?operacion=mostraralta">Añadir libro a la base de datos.</a>
 	</div>
 </body>
 </html>

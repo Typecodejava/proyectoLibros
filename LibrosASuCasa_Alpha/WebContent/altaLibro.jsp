@@ -10,7 +10,7 @@
 	<div>
 		<h2>Alta de libro</h2>
 		<div>
-			<form action="LoginServlet" method="post">
+			<form action="LoginServlet2" method="post">
 				<table>
 					<tr>
 						<td>ISBN: </td><td><input type="text" name="isbn" maxlength="20" size="20"></td>
