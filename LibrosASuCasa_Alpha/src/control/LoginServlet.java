@@ -54,6 +54,7 @@ public class LoginServlet extends HttpServlet {
 						lista.add(request.getParameter("sinopsis"));
 						lista.add(request.getParameter("precio"));
 						lista.add(request.getParameter("cantidad"));
+						lista.add(request.getParameter("imagen"));
 						serv.Alta(lista);
 					} else if (request.getParameter("operacion").equals("mostraralta")) {
 						mostrar(request, response, "altaLibro.jsp");
@@ -73,6 +74,7 @@ public class LoginServlet extends HttpServlet {
 						lista1.add(request.getParameter("sinopsis"));
 						lista1.add(request.getParameter("precio"));
 						lista1.add(request.getParameter("cantidad"));
+						lista1.add(request.getParameter("imagen"));
 						serv.Update(lista1);
 					}
 				}
