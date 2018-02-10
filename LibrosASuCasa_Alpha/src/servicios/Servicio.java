@@ -4,6 +4,7 @@ import modelo.ColLibros;
 import modelo.Libro;
 
 import java.util.List;
+import java.util.Set;
 
 import datos.*;
 
@@ -36,10 +37,8 @@ public class Servicio implements InterfaceServicio {
 	}
 
 	public void Update(List<String> list) {
-		System.out.println("entro a update");
 		Libro libro = new Libro(Integer.parseInt(list.get(0)), list.get(1), list.get(2), list.get(3), list.get(4),
 				Double.parseDouble(list.get(5)), Integer.parseInt(list.get(6)), list.get(7));
-		System.out.println("libro creado");
 		datos.Update(libro);
 		
 	}
@@ -51,8 +50,7 @@ public class Servicio implements InterfaceServicio {
 	public Libro BuscarLibro (String idLibros){
 		Libro libro;
 		ColLibros collibro=datos.BuscarLibro(idLibros);
-		List<Libro> list= collibro.getLibros();
-		libro=list.get(0);
+		libro=collibro.get(0);
 		return libro;
 	}
 	

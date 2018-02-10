@@ -2,9 +2,8 @@ package datos;
 
 import modelo.ColLibros;
 import modelo.Libro;
+import util.ConectorBBDD;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,80 +12,89 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Datos implements InterfaceDatos {
 
 	private static final String BDDNAME = "librosasucasa";
-	private static final String NOSSL = "?autoReconnect=true&useSSL=false";
 
-	public Statement conectar() {
-		Connection conex = null;
+	public void Conectar3(String query) {
 		Statement st = null;
-		String driverClassName = "com.mysql.jdbc.Driver";
-		String driverUrl = "jdbc:mysql://localhost/" + BDDNAME + NOSSL;
-		String user = "root";
-		String paswd = "1111";
 		try {
-			Class.forName(driverClassName);
-			conex = DriverManager.getConnection(driverUrl, user, paswd);
-
-			st = conex.createStatement();
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFound");
-
-		} catch (SQLException e) {
-			System.out.println("SQLException en el conectar");
-
+			ConectorBBDD con = new ConectorBBDD();
+			st = con.getConnection().createStatement();
+			int i = st.executeUpdate(query);
+			con.getConnection().close();
+		} catch (SQLException ex) {
+			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return st;
 	}
 
-	public ColLibros BuscarAutor(String busqueda) {
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM " + BDDNAME
-				+ ".libros, "+BDDNAME+".autores WHERE autores.idautores = libros.idautores AND LIKE '%" + busqueda + "%' or apellido LIKE '%" + busqueda + "%');";
-
-		return this.CrearColeccion(query);
-
-	}
-
-	
-	//metodo que llama BD y devuelve un libro
-	public ColLibros BuscarLibro(String busqueda){
-
-		//String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "+BDDNAME+".libros, "+BDDNAME+".autores "
-		//		+ "WHERE libros.idLibros LIKE '%"+busqueda+"% AND autores.idautores = libros.idautores';";  
-		String query="SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM libros, autores WHERE libros.idLibros LIKE'"+busqueda+"'  AND autores.idautores = libros.idautores;";
-		return this.CrearColeccion (query);
-		
-	}
-	
-
-
-	public ColLibros CrearColeccion(String query) {
+	public List<String> Conectar2(String query) {
 		Statement st = null;
 		ResultSet rs = null;
-		ColLibros librosDeBusqueda = new ColLibros();
-
+		List<String> misCategorias = new ArrayList<>();
 		try {
-			st = conectar();
-
+			ConectorBBDD con = new ConectorBBDD();
+			st = con.getConnection().createStatement();
 			rs = st.executeQuery(query);
 
 			while (rs.next()) {
-				System.out.println(rs.getInt(1));
-				System.out.println(rs.getString(2));
-				System.out.println(rs.getString(3));
-				System.out.println(rs.getString(4));
-				System.out.println(rs.getString(5));
-				System.out.println(rs.getDouble(6));
-				System.out.println(rs.getInt(7));
-				System.out.println(rs.getString(8));
-				System.out.println(rs.getString(9));
+				misCategorias.add(rs.getString(1));
+			}
+			con.getConnection().close();
+		} catch (SQLException ex) {
+			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		return misCategorias;
+	}
+
+	public ColLibros Conectar(String query) {
+		Statement st = null;
+		ColLibros librosDeBusqueda = new ColLibros();
+		try {
+			ConectorBBDD con = new ConectorBBDD();
+			st = con.getConnection().createStatement();
+			librosDeBusqueda = CrearColeccion(query, st);
+			con.getConnection().close();
+		} catch (SQLException ex) {
+			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return librosDeBusqueda;
+	}
+
+	public ColLibros BuscarAutor(String busqueda) {
+
+		
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "
+				+ BDDNAME + ".libros, " + BDDNAME + ".autores WHERE autores.idautores = libros.idautores AND autores.nombre LIKE '%"
+				+ busqueda + "%' or apellido LIKE '%" + busqueda + "%';";
+
+		return this.Conectar(query);
+
+	}
+
+	// metodo que llama BD y devuelve un libro
+	public ColLibros BuscarLibro(String busqueda) {
+
+		// String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis,
+		// precio, cantidad, imagen, nombre FROM "+BDDNAME+".libros,
+		// "+BDDNAME+".autores "
+		// + "WHERE libros.idLibros LIKE '%"+busqueda+"% AND autores.idautores =
+		// libros.idautores';";
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM libros, autores WHERE libros.idLibros LIKE'"
+				+ busqueda + "'  AND autores.idautores = libros.idautores;";
+		return this.Conectar(query);
+
+	}
+
+	public ColLibros CrearColeccion(String query, Statement st) {
+		ResultSet rs = null;
+		ColLibros librosDeBusqueda = new ColLibros();
+		try {
+			rs = st.executeQuery(query);
+			while (rs.next()) {
 				Libro nuevoLibro = new Libro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getDouble(6), rs.getInt(7), rs.getString(8), rs.getString(9));
-				
-				
-				
 				librosDeBusqueda.add(nuevoLibro);
 			}
 		}
@@ -99,100 +107,60 @@ public class Datos implements InterfaceDatos {
 
 	public ColLibros BuscarTitulo(String busqueda) {
 
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM " + BDDNAME
-				+ ".libros, " + BDDNAME + ".autores WHERE libros.idautores = autores.idautores AND titulo LIKE '%" + busqueda + "%';";
+		
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "
+				+ BDDNAME + ".libros, " + BDDNAME
+				+ ".autores WHERE libros.idautores = autores.idautores AND titulo LIKE '%" + busqueda + "%';";
 
-		return this.CrearColeccion(query);
+		return this.Conectar(query);
 
 	}
 
 	public List<String> BuscarCategorias() {
-		List<String> misCategorias = new ArrayList<>();
-		Statement st = null;
-		ResultSet rs = null;
+
 		String query = "SELECT nombre FROM categorias;";
 
-		try {
-			st = conectar();
-			rs = st.executeQuery(query);
-
-			while (rs.next()) {
-				misCategorias.add(rs.getString(1));
-			}
-		} catch (SQLException e) {
-			System.out.println("SQLException en buscar categorias");
-		}
-		return misCategorias;
+		return this.Conectar2(query);
 	}
 
 	/** Metodo para busqueda de Libros por categoria */
 
 	public ColLibros BuscarLibrosCategoria(String busqueda) {
 
-		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad, imagen, autores.nombre FROM " + BDDNAME
-				+ ".libros, " + BDDNAME + ".categorias, " + BDDNAME + ".autores WHERE categorias.nombre like '%" + busqueda
+		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad, imagen, autores.nombre FROM "
+				+ BDDNAME + ".libros, " + BDDNAME + ".categorias, " + BDDNAME
+				+ ".autores WHERE categorias.nombre like '%" + busqueda
 				+ "%' AND libros.idCategorias=categorias.idCategorias AND autores.idautores = libros.idautores;";
-		return this.CrearColeccion(query);
+		return this.Conectar(query);
 	}
 
 	public void Alta(Libro libro) {
-		Statement st = null;
-		try {
-
-			st = conectar();
-			String q = "INSERT INTO libros VALUES (NULL ,'" + libro.getIsbn() + "','"
-					+ libro.getTitulo() + "','" + libro.getDescripcion() + "','" + libro.getSinopsis() + "','"
-					+ libro.getImagen() + "','" + libro.getCantidad() + "','" + libro.getPrecio() + "',2	,NULL);";
-			
-			int i = st.executeUpdate(q);
-
-		} catch (SQLException ex) {
-			System.out.println("SQLException en alta");
-		}
+		String q = "INSERT INTO libros VALUES (NULL ,'" + libro.getIsbn() + "','" + libro.getTitulo() + "','"
+				+ libro.getDescripcion() + "','" + libro.getSinopsis() + "','" + libro.getImagen() + "','"
+				+ libro.getCantidad() + "','" + libro.getPrecio() + "',2	,NULL);";
+		this.Conectar3(q);
 	}
 
 	public void Update(Libro libro) {
-		Statement st = null;
-		try {
-			st = conectar();
-			String q = "UPDATE libros SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo()
-					+ "',descripcion ='" + libro.getDescripcion() + "',sinopsis ='" + libro.getSinopsis() + "',imagen ='"
-					+ libro.getImagen() + "',cantidad ='" + libro.getCantidad() + "',precio ='" + libro.getPrecio()
-					+ "' WHERE idLibros='" + libro.getIdLibro() + "';";
-			int i = st.executeUpdate(q);
-
-		} catch (SQLException ex) {
-			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		String q = "UPDATE libros SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo()
+				+ "',descripcion ='" + libro.getDescripcion() + "',sinopsis ='" + libro.getSinopsis() + "',imagen ='"
+				+ libro.getImagen() + "',cantidad ='" + libro.getCantidad() + "',precio ='" + libro.getPrecio()
+				+ "' WHERE idLibros='" + libro.getIdLibro() + "';";
+		this.Conectar3(q);
 	}
 
 	public void Baja(String idlibro) {
-		Statement st = null;
-		try {
-			System.out.println("--- Dando de baja el codigo " + idlibro);
-			st = conectar();
-			String q = "delete from libros where idLibros ='" + idlibro + "'";
+		String q = "delete from libros where idLibros ='" + idlibro + "'";
+		this.Conectar3(q);
+	}
 
-			int i = st.executeUpdate(q);
-			System.out.println(q + i);
-
-		} catch (SQLException ex) {
-			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-	}	
-	
 	@Override
 	public ColLibros ListaLibrosBBDD() {
 
-		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM " + BDDNAME
-				+ ".libros, " + BDDNAME + ".autores WHERE libros.idautores = autores.idautores;";
+		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "
+				+ BDDNAME + ".libros, " + BDDNAME + ".autores WHERE libros.idautores = autores.idautores;";
 
-		return this.CrearColeccion(query);
+		return this.Conectar(query);
 	}
-	
-	
-	
-	
 
 }
