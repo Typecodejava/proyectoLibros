@@ -38,7 +38,6 @@ public class Menu extends HttpServlet {
 				libros = serv.BuscarTitulo(request.getParameter("lib_titulo"));
 				libros2 = serv.BuscarAutor(request.getParameter("lib_titulo"));
 				for (Libro libro:libros2.getLibros()){
-					System.out.println("estoy aqui");
 					if (libros.NoTiene(libro)){
 						libros.add(libro);
 					}

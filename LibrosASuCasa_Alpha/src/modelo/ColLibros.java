@@ -43,13 +43,8 @@ public class ColLibros {
 
 	public boolean NoTiene(Libro libro) {
 		boolean a=true;
-		System.out.println("intentando añadir "+libro.getTitulo());
 		for (Libro lib:this.getLibros()){
-			System.out.println(lib.getTitulo().equals(libro.getTitulo()));
-			System.out.println(lib.getTitulo());
-			System.out.println(libro.getTitulo());
 			if (lib.getTitulo().equals(libro.getTitulo())){
-				System.out.println("no se añade "+libro.getTitulo());
 				a=false;
 			}
 		}
