@@ -142,7 +142,7 @@ public class Datos implements InterfaceDatos {
 			st = conectar();
 			String q = "INSERT INTO libros VALUES (NULL ,'" + libro.getIsbn() + "','"
 					+ libro.getTitulo() + "','" + libro.getDescripcion() + "','" + libro.getSinopsis() + "','"
-					+ libro.getImagen() + "','" + libro.getCantidad() + "','" + libro.getPrecio() + "',NULL	,NULL);";
+					+ libro.getImagen() + "','" + libro.getCantidad() + "','" + libro.getPrecio() + "',2	,NULL);";
 			
 			int i = st.executeUpdate(q);
 

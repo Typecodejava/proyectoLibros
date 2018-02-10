@@ -106,7 +106,6 @@ public class LoginServlet2 extends HttpServlet {
 				}
 				ColLibros libros = serv.MostrarLibrosBBDD();
 				request.setAttribute("libros", libros.getLibros());
-
 				mostrar(request, response, "mainBackOff.jsp");
 			}
 
