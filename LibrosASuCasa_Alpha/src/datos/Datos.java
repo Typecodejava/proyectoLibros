@@ -133,6 +133,16 @@ public class Datos implements InterfaceDatos {
 				+ "%' AND libros.idCategorias=categorias.idCategorias AND autores.idautores = libros.idautores;";
 		return this.Conectar(query);
 	}
+	
+	public ColLibros BuscarSemejanza (String busqueda){
+		
+		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad, imagen, autores.nombre "
+				+ "FROM " + BDDNAME + ".libros, " + BDDNAME + ".autores "
+				+ "WHERE ( titulo LIKE '%"+busqueda+"%' OR autores.nombre LIKE '%"+busqueda+"%' OR autores.apellido LIKE '%"+busqueda+"%' ) "
+						+ "AND libros.idautores = autores.idautores;";
+		
+		return this.Conectar(query);
+	}
 
 	public void Alta(Libro libro) {
 		String q = "INSERT INTO libros VALUES (NULL ,'" + libro.getIsbn() + "','" + libro.getTitulo() + "','"

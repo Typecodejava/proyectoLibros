@@ -54,6 +54,10 @@ public class Servicio implements InterfaceServicio {
 		return libro;
 	}
 	
+	public ColLibros BuscarSemejanza (String string){
+		return datos.BuscarSemejanza(string);
+	}
+	
 	//devuelve toda la coleccion de libros en la BBDD
 	public ColLibros MostrarLibrosBBDD(){
 		return datos.ListaLibrosBBDD();

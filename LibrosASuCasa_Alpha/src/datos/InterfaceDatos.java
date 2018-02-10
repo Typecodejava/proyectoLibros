@@ -13,6 +13,8 @@ public interface InterfaceDatos {
 	public List<String> BuscarCategorias ();
 	public void Alta(Libro libro);
 	public void Update(Libro libro);
+	
+	public ColLibros BuscarSemejanza (String string);
 
 	public ColLibros BuscarLibro(String string); 
 

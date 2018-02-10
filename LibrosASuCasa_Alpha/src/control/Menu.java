@@ -35,6 +35,9 @@ public class Menu extends HttpServlet {
 			ColLibros libros = new ColLibros();
 			ColLibros libros2 = new ColLibros();
 			if (request.getParameter("lib_titulo") != null) {
+				
+				libros = serv.BuscarSemejanza(request.getParameter("lib_titulo"));
+				/*
 				libros = serv.BuscarTitulo(request.getParameter("lib_titulo"));
 				libros2 = serv.BuscarAutor(request.getParameter("lib_titulo"));
 				for (Libro libro:libros2.getLibros()){
@@ -43,6 +46,8 @@ public class Menu extends HttpServlet {
 					}
 					
 				}
+				
+				*/
 			} 
 
 			// guardo la informacion lib_categoria

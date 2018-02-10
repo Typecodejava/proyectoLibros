@@ -13,7 +13,7 @@ public interface InterfaceServicio {
 	public void Update(List<String> lista);
 	public void Baja(String idLibro);
 	public Libro BuscarLibro (String string);
-
+	public ColLibros BuscarSemejanza (String string);
 	public ColLibros MostrarLibrosBBDD();
 
 }
