@@ -50,10 +50,11 @@ public class LoginServlet2 extends HttpServlet {
 				if (nombreUsuario.equals("admin123")) {
 					System.out.println("-------usuarios validado");
 
-					String name = (String) session.getAttribute("password");
+					//String name = (String) session.getAttribute("password");
 
-					System.out.println("Hello, " + name + " Welcome to Profile");
-					
+
+					System.out.println("Hello, " + nombreUsuario + " Welcome to Profile");
+          
 					if (request.getParameter("operacion") != null) {
 						
 						if (request.getParameter("operacion").equals("alta")) {
@@ -90,6 +91,10 @@ public class LoginServlet2 extends HttpServlet {
 							lista1.add(request.getParameter("cantidad"));
 							lista1.add(request.getParameter("imagen"));
 							serv.Update(lista1);
+						}else if(request.getParameter("operacion").equals("baja")){
+							//elimino una fila de la BBDD libro
+							String idlibros = request.getParameter("idlibro");
+							serv.Baja(idlibros);
 						}
 					}
 
