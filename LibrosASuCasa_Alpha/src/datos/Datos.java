@@ -140,13 +140,14 @@ public class Datos implements InterfaceDatos {
 		try {
 
 			st = conectar();
-			String q = "INSERT INTO `libros` VALUES ('" + libro.getIdLibro() + "','" + libro.getIsbn() + "','"
+			String q = "INSERT INTO libros VALUES (NULL ,'" + libro.getIsbn() + "','"
 					+ libro.getTitulo() + "','" + libro.getDescripcion() + "','" + libro.getSinopsis() + "','"
-					+ libro.getImagen() + "','" + libro.getCantidad() + "','" + libro.getPrecio() + "')";
+					+ libro.getImagen() + "','" + libro.getCantidad() + "','" + libro.getPrecio() + "',NULL	,NULL);";
+			
 			int i = st.executeUpdate(q);
 
 		} catch (SQLException ex) {
-			System.out.println("SQLException");
+			System.out.println("SQLException en alta");
 		}
 	}
 
@@ -154,11 +155,10 @@ public class Datos implements InterfaceDatos {
 		Statement st = null;
 		try {
 			st = conectar();
-			String q = "UPDATE `libros` SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo()
-					+ "',descripcion'" + libro.getDescripcion() + "',sinopsis'" + libro.getSinopsis() + "',imagen'"
-					+ libro.getImagen() + "',cantidad'" + libro.getCantidad() + "',precio'" + libro.getPrecio()
-					+ "' WHERE code='" + libro.getIdLibro() + "'";
-			System.out.println(q);
+			String q = "UPDATE libros SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo()
+					+ "',descripcion ='" + libro.getDescripcion() + "',sinopsis ='" + libro.getSinopsis() + "',imagen ='"
+					+ libro.getImagen() + "',cantidad ='" + libro.getCantidad() + "',precio ='" + libro.getPrecio()
+					+ "' WHERE idLibros='" + libro.getIdLibro() + "';";
 			int i = st.executeUpdate(q);
 
 		} catch (SQLException ex) {
