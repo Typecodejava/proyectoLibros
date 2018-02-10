@@ -33,17 +33,18 @@ public class Menu extends HttpServlet {
 
 		if ((request.getParameter("operacion").equals("busqueda"))) {
 			ColLibros libros = new ColLibros();
+			ColLibros libros2 = new ColLibros();
 			if (request.getParameter("lib_titulo") != null) {
-				// Paso 01
-				// - Recoger informacion
-				// - Guardarla en objeto
 				libros = serv.BuscarTitulo(request.getParameter("lib_titulo"));
-			} else if (request.getParameter("lib_autor") != null) {
-				// Paso 01
-				// - Recoger informacion
-				// - Guardarla en objeto
-				libros = serv.BuscarAutor(request.getParameter("lib_autor"));
-			}
+				libros2 = serv.BuscarAutor(request.getParameter("lib_titulo"));
+				for (Libro libro:libros2.getLibros()){
+					System.out.println("estoy aqui");
+					if (libros.NoTiene(libro)){
+						libros.add(libro);
+					}
+					
+				}
+			} 
 
 			// guardo la informacion lib_categoria
 			else if (request.getParameter("lib_categoria") != null) {
@@ -59,6 +60,9 @@ public class Menu extends HttpServlet {
 		} else if (request.getParameter("operacion").equals("mostrarlibro")) {
 			Libro libro = serv.BuscarLibro(request.getParameter("idlibro"));
 			request.setAttribute("libro", libro);
+			List<String> categorias;
+			categorias = serv.BuscarCategorias();
+			request.setAttribute("categorias", categorias);
 			mostrar(request, response, "detalleLibro.jsp");
 		}
 
