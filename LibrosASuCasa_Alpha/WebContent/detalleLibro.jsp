@@ -176,6 +176,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</span>
 					</div>
 					<div class="w3agile_description">
+						<h4>AUTOR:</h4>
+						<p>${libro.autor}</p>
 						<h4>DESCRIPCION :</h4>
 						<p>${libro.descripcion}</p>
 					</div>

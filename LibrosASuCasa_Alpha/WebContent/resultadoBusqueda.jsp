@@ -179,8 +179,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 								<p><a href="Menu?operacion=mostrarlibro&idlibro=${libro.idLibro}"><b>TITULO: ${libro.titulo}</b></a></p>
 									<p>ISBN: ${libro.isbn}</p>
-
-									<p>resto de campos</p>
+									<p>${libro.autor}</p>
 							</div>
 							<div class="col-5">
 								<p>precio: ${libro.precio }€</p>
