@@ -1,7 +1,11 @@
 package modelo;
 
 import java.sql.Blob;
-
+/**
+ * 
+ * @author Grupo1
+ *Clase que sirve para guardar la informacion de la base de datos.
+ */
 public class Libro {
 	
 	
@@ -15,7 +19,10 @@ public class Libro {
 	private String imagen;
 	private String autor;
 	
-	
+	/**
+	 * Getters and Setters
+	 * 
+	 */
 	public int getIdLibro() {
 		return idLibro;
 	}
@@ -74,6 +81,18 @@ public class Libro {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+	/**
+	 * Constructor completo de libro
+	 * @param idLibro
+	 * @param isbn
+	 * @param titulo
+	 * @param descripcion
+	 * @param sinopsis
+	 * @param precio
+	 * @param cantidad
+	 * @param imagen
+	 * @param autor
+	 */
 	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad, String imagen, String autor) {
 		super();
 		this.idLibro = idLibro;
@@ -86,6 +105,17 @@ public class Libro {
 		this.imagen = imagen;
 		this.autor = autor;
 	} 
+	/**
+	 * Contructor parcial
+	 * @param idLibro
+	 * @param isbn
+	 * @param titulo
+	 * @param descripcion
+	 * @param sinopsis
+	 * @param precio
+	 * @param cantidad
+	 * @param imagen
+	 */
 	public Libro(int idLibro, String isbn, String titulo, String descripcion, String sinopsis, double precio,int cantidad, String imagen) {
 		super();
 		this.idLibro = idLibro;
@@ -105,7 +135,9 @@ public class Libro {
 	public Libro(){
 		
 	}
-	@Override
+	/**
+	 * Sobreescritura de toString()
+	 */
 	public String toString() {
 		return "Libro [idLibro=" + idLibro + ", isbn=" + isbn + ", titulo=" + titulo + ", descripcion=" + descripcion
 				+ ", sinopsis=" + sinopsis + ", precio=" + precio + ", cantidad=" + cantidad + ", imagen=" + imagen

@@ -12,10 +12,24 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @version 1
+ * @author Grupo 1
+ *Clase Datos, realiza la comunicacion con la base de datos.
+ *
+ *
+ */
+
 public class Datos implements InterfaceDatos {
 
 	private static final String BDDNAME = "librosasucasa";
 
+	/**
+	 * Tenomos 3 funciones de conectar con la base de datos dependiendo de lo que estemos buscando.
+	 * En este caso queremos ejecutar Añadir, modificar y eliminar.
+	 * @return void
+	 * @param query
+	 */
 	public void Conectar3(String query) {
 		Statement st = null;
 		try {
@@ -27,7 +41,12 @@ public class Datos implements InterfaceDatos {
 			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-
+	
+	/**
+	 * Establece la conexion con la base de datos, busca en la base da datos las categorias y las guarda en una lista.
+	 * @param query
+	 * @return lista de categoria 
+	 */
 	public List<String> Conectar2(String query) {
 		Statement st = null;
 		ResultSet rs = null;
@@ -47,6 +66,11 @@ public class Datos implements InterfaceDatos {
 
 		return misCategorias;
 	}
+	/**
+	 * Busca en la base de datos los campos que mande la query y se crea una coleccion de libros.
+	 * @param query
+	 * @return Coleccion de libros
+	 */
 
 	public ColLibros Conectar(String query) {
 		Statement st = null;
@@ -62,6 +86,10 @@ public class Datos implements InterfaceDatos {
 		return librosDeBusqueda;
 	}
 
+	/**
+	 * Introducimos la query, para que consigamos los libros del campo busqueda.
+	 * @return Coleccion de libros
+	 */
 	public ColLibros BuscarAutor(String busqueda) {
 
 		
@@ -72,8 +100,13 @@ public class Datos implements InterfaceDatos {
 		return this.Conectar(query);
 
 	}
+	
+	/**
+	 * Busca en la base de datos y devuelve el libro que coincida con su primary key
+	 * @return Coleccion de libros
+	 * @param Primary key de libro
+	 */
 
-	// metodo que llama BD y devuelve un libro
 	public ColLibros BuscarLibro(String busqueda) {
 
 		// String query ="SELECT idLibros, isbn, titulo, descripcion, sinopsis,
@@ -86,7 +119,13 @@ public class Datos implements InterfaceDatos {
 		return this.Conectar(query);
 
 	}
-
+	/**
+	 * Crea la coleccion de libros que coincidan con la query instanciando los objetos de la base de datos y añadiendolos
+	 * a una coleccion
+	 * @param query
+	 * @param st
+	 * @return ColLibros
+	 */
 	public ColLibros CrearColeccion(String query, Statement st) {
 		ResultSet rs = null;
 		ColLibros librosDeBusqueda = new ColLibros();
@@ -104,7 +143,10 @@ public class Datos implements InterfaceDatos {
 		}
 		return librosDeBusqueda;
 	}
-
+	
+	/**
+	 * Metodo que recibe la busqueda del cuadro de texto y devuelve la coleccion
+	 */
 	public ColLibros BuscarTitulo(String busqueda) {
 
 		
@@ -115,6 +157,10 @@ public class Datos implements InterfaceDatos {
 		return this.Conectar(query);
 
 	}
+	
+	/**
+	 * Metodo que crea la lista de categorias para su posterior impresion en la pagina web
+	 */
 
 	public List<String> BuscarCategorias() {
 
@@ -133,14 +179,30 @@ public class Datos implements InterfaceDatos {
 				+ "%' AND libros.idCategorias=categorias.idCategorias AND autores.idautores = libros.idautores;";
 		return this.Conectar(query);
 	}
-
+	/**
+	 * Metodo unificado de busqueda
+	 */
+	public ColLibros BuscarSemejanza (String busqueda){
+		
+		String query = "SELECT idLibros, isbn, titulo, libros.descripcion, sinopsis, precio, cantidad, imagen, autores.nombre "
+				+ "FROM " + BDDNAME + ".libros, " + BDDNAME + ".autores "
+				+ "WHERE ( titulo LIKE '%"+busqueda+"%' OR autores.nombre LIKE '%"+busqueda+"%' OR autores.apellido LIKE '%"+busqueda+"%' ) "
+						+ "AND libros.idautores = autores.idautores;";
+		
+		return this.Conectar(query);
+	}
+	/**
+	 * Metodo que recibe un libro y lo añade a la base de datos
+	 */
 	public void Alta(Libro libro) {
 		String q = "INSERT INTO libros VALUES (NULL ,'" + libro.getIsbn() + "','" + libro.getTitulo() + "','"
 				+ libro.getDescripcion() + "','" + libro.getSinopsis() + "','" + libro.getImagen() + "','"
 				+ libro.getCantidad() + "','" + libro.getPrecio() + "',2	,NULL);";
 		this.Conectar3(q);
 	}
-
+	/**
+	 * Metodo para hacer el update de un libro que ya existe
+	 */
 	public void Update(Libro libro) {
 		String q = "UPDATE libros SET isbn ='" + libro.getIsbn() + "',titulo ='" + libro.getTitulo()
 				+ "',descripcion ='" + libro.getDescripcion() + "',sinopsis ='" + libro.getSinopsis() + "',imagen ='"
@@ -148,13 +210,45 @@ public class Datos implements InterfaceDatos {
 				+ "' WHERE idLibros='" + libro.getIdLibro() + "';";
 		this.Conectar3(q);
 	}
-
+	/**
+	 * Metodo que elimina un libro de la base de datos
+	 */
 	public void Baja(String idlibro) {
 		String q = "delete from libros where idLibros ='" + idlibro + "'";
 		this.Conectar3(q);
 	}
+	
+	public boolean ComprobarAdmin (String user, String psswd){
+		String query = "SELECT * FROM administradores WHERE nick LIKE '"+user+"' AND passwd LIKE '"+psswd+"';";
+		boolean flag = false;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			ConectorBBDD con = new ConectorBBDD();
+			st = con.getConnection().createStatement();
+			try{
+				rs = st.executeQuery(query);
+				if (rs.next()){
+					flag = true;
+				}
+				else{
+					flag = false;
+				}
+			}
+			catch (SQLException e) {
+				System.out.println("SQLException en comprobación del administrador");
+			}
+			con.getConnection().close();
+		} catch (SQLException ex) {
+			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		return flag;
+	}
 
-	@Override
+	/**
+	 * Metodo que crea coleccion de libros con todos los libros de la base de datos
+	 */
 	public ColLibros ListaLibrosBBDD() {
 
 		String query = "SELECT idLibros, isbn, titulo, descripcion, sinopsis, precio, cantidad, imagen, nombre FROM "

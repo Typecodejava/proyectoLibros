@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="w3l_search">
 			<form action="Menu" method="post">
-				<input type="text" name="lib_titulo" value="Título de libro a Buscar..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Título de libro a Buscar...';}" required="">
+				<input type="text" name="lib_titulo" value="Buscar por título o autor..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar por título o autor...';}" required="">
 				<input type="hidden" name="operacion" value="busqueda" />		
 				<input type="submit" value="Buscar">
 			</form>
@@ -73,22 +73,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </form>
 		</div>
 		<div class="w3l_header_right">
-			<ul>
-				<li class="dropdown profile_details_drop">
-					<a href="login.jsp" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
-					<div class="mega-dropdown-menu">
-						<div class="w3ls_vegetables">
-							<ul class="dropdown-menu drp-mnu">
-								<li><a href="login.html">Login</a></li> 
-								<li><a href="login.html">Sign Up</a></li>
-							</ul>
-						</div>                  
-					</div>	
-				</li>
-			</ul>
-		</div>
-		<div class="w3l_header_right1">
-			<h2><a href="mail.html">Contacto</a></h2>
+			<div class="w3l_offers">
+				<a href="login.jsp">BackOffice</a>
+			</div>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
@@ -111,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="logo_products">
 		<div class="container">
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.html"><span>Libros</span>a Su Casa</a></h1>
+				<h1><a href="Menu?operacion=mostrarcategoria"><span>Libros</span>a Su Casa</a></h1>
 			</div>
 			<div class="w3ls_logo_products_left1">
 				<ul class="special_items">

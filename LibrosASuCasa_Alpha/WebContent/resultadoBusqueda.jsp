@@ -58,30 +58,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </head>
 <!-- header -->
-<body>
 	<div class="agileits_header">
 		<div class="w3l_offers">
 			<a href="products.html">Ofertas de hoy!</a>
 		</div>
 		<div class="w3l_search">
 			<form action="Menu" method="post">
-				<input type="text" name="lib_titulo"
-					value="Título de libro a Buscar..." onfocus="this.value = '';"
-					onblur="if (this.value == '') {this.value = 'Título de libro a Buscar...';}"
-					required=""> <input type="hidden" name="operacion"
-					value="busqueda" /> <input type="submit" value="Buscar">
+				<input type="text" name="lib_titulo" value="Buscar por título o autor..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar por título o autor...';}" required="">
+				<input type="hidden" name="operacion" value="busqueda" />		
+				<input type="submit" value="Buscar">
 			</form>
 		</div>
-		<div class="product_list_header">
+		<div class="product_list_header">  
 			<form action="#" method="post" class="last">
-				<fieldset>
-					<input type="hidden" name="cmd" value="_cart" /> <input
-						type="hidden" name="display" value="1" /> <input type="submit"
-						name="submit" value="Ver tu carrito" class="button" />
-				</fieldset>
-			</form>
+                <fieldset>
+                    <input type="hidden" name="cmd" value="_cart" />
+                    <input type="hidden" name="display" value="1" />
+                    <input type="submit" name="submit" value="Ver tu carrito" class="button" />
+                </fieldset>
+            </form>
 		</div>
 		<div class="w3l_header_right">
+
 			<ul>
 				<li class="dropdown profile_details_drop">
 				<a href="login.jsp" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
@@ -99,11 +97,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2>
 				<a href="mail.html">Contacto</a>
 			</h2>
-		</div>
-		<div class="clearfix"></div>
-	</div>
 
-	<!-- script-for sticky-nav -->
+			<div class="w3l_offers">
+				<a href="login.jsp">BackOffice</a>
+			</div>
+
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+<!-- script-for sticky-nav -->
 	<script>
 		$(document).ready(function() {
 			var navoffeset = $(".agileits_header").offset().top;
@@ -124,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="w3ls_logo_products_left">
 				<h1>
-					<a href="index.html"><span>Libros</span>a Su Casa</a>
+					<a href="Menu?operacion=mostrarcategoria"><span>Libros</span>a Su Casa</a>
 				</h1>
 			</div>
 			<div class="w3ls_logo_products_left1">
@@ -197,8 +199,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 								<p><a href="Menu?operacion=mostrarlibro&idlibro=${libro.idLibro}"><b>TITULO: ${libro.titulo}</b></a></p>
 									<p>ISBN: ${libro.isbn}</p>
-
-									<p>resto de campos</p>
+									<p>${libro.autor}</p>
 							</div>
 							<div class="col-5">
 								<p>precio: ${libro.precio }€</p>
