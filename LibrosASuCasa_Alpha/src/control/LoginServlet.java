@@ -38,8 +38,10 @@ public class LoginServlet extends HttpServlet {
 
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
+			
+			if ( serv.ComprobarAdmin(name, password) ) {
 
-			if (password.equals("admin123")) {
+			//if (password.equals("admin123")) {
 				// inicio sesion como admin
 
 				HttpSession miSesion = request.getSession(true);

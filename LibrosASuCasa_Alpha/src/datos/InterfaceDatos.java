@@ -19,6 +19,7 @@ public interface InterfaceDatos {
 	public ColLibros BuscarLibro(String string); 
 
 	public void Baja( String idLibro);
+	public boolean ComprobarAdmin (String user, String psswd);
 	public ColLibros ListaLibrosBBDD();	
 
 }

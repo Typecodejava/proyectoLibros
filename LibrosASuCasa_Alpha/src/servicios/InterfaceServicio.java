@@ -14,6 +14,7 @@ public interface InterfaceServicio {
 	public void Baja(String idLibro);
 	public Libro BuscarLibro (String string);
 	public ColLibros BuscarSemejanza (String string);
+	public boolean ComprobarAdmin (String user, String psswd);
 	public ColLibros MostrarLibrosBBDD();
 
 }

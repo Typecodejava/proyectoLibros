@@ -58,6 +58,10 @@ public class Servicio implements InterfaceServicio {
 		return datos.BuscarSemejanza(string);
 	}
 	
+	public boolean ComprobarAdmin (String user, String psswd){
+		return datos.ComprobarAdmin(user, psswd);
+	}
+	
 	//devuelve toda la coleccion de libros en la BBDD
 	public ColLibros MostrarLibrosBBDD(){
 		return datos.ListaLibrosBBDD();

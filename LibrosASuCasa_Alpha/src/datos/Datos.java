@@ -163,6 +163,34 @@ public class Datos implements InterfaceDatos {
 		String q = "delete from libros where idLibros ='" + idlibro + "'";
 		this.Conectar3(q);
 	}
+	
+	public boolean ComprobarAdmin (String user, String psswd){
+		String query = "SELECT * FROM administradores WHERE nick LIKE '"+user+"' AND passwd LIKE '"+psswd+"';";
+		boolean flag = false;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			ConectorBBDD con = new ConectorBBDD();
+			st = con.getConnection().createStatement();
+			try{
+				rs = st.executeQuery(query);
+				if (rs.next()){
+					flag = true;
+				}
+				else{
+					flag = false;
+				}
+			}
+			catch (SQLException e) {
+				System.out.println("SQLException en comprobación del administrador");
+			}
+			con.getConnection().close();
+		} catch (SQLException ex) {
+			Logger.getLogger(Datos.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		return flag;
+	}
 
 	@Override
 	public ColLibros ListaLibrosBBDD() {
