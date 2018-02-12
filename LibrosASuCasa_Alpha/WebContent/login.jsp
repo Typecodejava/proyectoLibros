@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 		<div class="w3l_header_right1">
-			<h2><a href="mail.html">Contacto</a></h2>
+			<h2><a href="Menu?operacion=mostrarcontacto">Contacto</a></h2>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
@@ -90,10 +90,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="w3ls_logo_products_left1">
 				<ul class="special_items">
-					<li><a href="events.html">Eventos</a><i>/</i></li>
-					<li><a href="about.html">Sobre Nosotros</a><i>/</i></li>
-					<li><a href="products.html">Ofertas</a><i>/</i></li>
-					<li><a href="services.html">Servicios</a></li>
+					<li><a href="Menu?operacion=mostrarcontacto">Eventos</a><i>/</i></li>
+					<li><a href="Menu?operacion=mostrarcontacto">Sobre Nosotros</a><i>/</i></li>
+					<li><a href="Menu?operacion=mostrarcontacto">Ofertas</a><i>/</i></li>
+					<li><a href="Menu?operacion=mostrarcontacto">Servicios</a></li>
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left1">
