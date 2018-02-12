@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header -->
 	<div class="agileits_header">
 		<div class="w3l_offers">
-			<a href="products.html">Ofertas de hoy!</a>
+			<a href="Menu?operacion=mostrarlibro&idlibro=4">Ofertas de hoy!</a>
 		</div>
 		<div class="w3l_search">
 			<form action="Menu" method="post">
