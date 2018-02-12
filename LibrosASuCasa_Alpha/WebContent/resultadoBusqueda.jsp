@@ -181,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="flexslider">
 				<c:choose>
 					<c:when test="${Listalibros.isEmpty()}">
-						<p>No se ha encontrado libro</p>
+						<h5><p> No se ha encontrado libro</p></h5>
 					</c:when>
 					<c:otherwise>
 
