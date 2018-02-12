@@ -57,5 +57,11 @@
 	<div>
 		<a href="LoginServlet2?operacion=mostraralta">Añadir libro a la base de datos.</a>
 	</div>
+	
+		<div>
+		<a href="Menu?operacion=mostrarcategorias">Página Principal</a>
+	</div>
+	
+	
 </body>
 </html>
