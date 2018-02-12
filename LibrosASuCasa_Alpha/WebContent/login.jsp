@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>LOGIN ADMINISTRADOR</title>
+
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -203,6 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</p>
 
 -->
+
 
 </body>
 </html>

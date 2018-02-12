@@ -45,13 +45,15 @@ public class LoginServlet2 extends HttpServlet {
 				response.sendRedirect("login.jsp");
 				return;
 			} else {
-				String nombreUsuario = (String) session.getAttribute("password");
+				String nombreUsuario = (String) session.getAttribute("name");
+				String pwd = (String) session.getAttribute("password");
 
-				if (nombreUsuario.equals("admin123")) {
+				if ( serv.ComprobarAdmin(nombreUsuario,pwd) ) {
+					
+				//if (nombreUsuario.equals("root")) {
 					System.out.println("-------usuarios validado");
 
 					//String name = (String) session.getAttribute("password");
-
 
 					System.out.println("Hello, " + nombreUsuario + " Welcome to Profile");
           

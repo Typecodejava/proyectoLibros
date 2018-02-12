@@ -9,7 +9,7 @@
 <body>
 	<div>
 		<h2>Administration Main Page</h2>
-			<h3>Bienvenid@: ${nombre}</h3>
+			<h3>Bienvenid@: ${name}</h3>
 			<h4>Administración de Libros</h4>
 			
 			<c:if test="${libros.isEmpty()}">
