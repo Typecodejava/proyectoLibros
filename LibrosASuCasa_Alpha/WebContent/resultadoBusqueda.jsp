@@ -168,7 +168,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- /.navbar-collapse -->
 			</nav>
 		</div>
-		<div class="w3l_banner_nav_right">
+		
+	 	<div class="w3l_banner_nav_right"> 
+		<div class="clearfix">
 		<c:choose>
 			<c:when test="${Listalibros.isEmpty()}">
 				<p>No se ha encontrado libro</p>
@@ -204,9 +206,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 			</c:otherwise>
 			</c:choose>
+			
 		</div>
+		
 	</div>
 	
-	</div>
+</div>
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
 </body>
 </html>
