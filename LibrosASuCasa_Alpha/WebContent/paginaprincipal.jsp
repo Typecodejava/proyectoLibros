@@ -74,12 +74,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="w3l_header_right">
 			<div class="w3l_offers">
-				<a href="login.jsp">BackOffice</a>
+				<a href="login.jsp">BackOffice</a>   
 			</div>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-<!-- script-for sticky-nav -->
+<!-- script-for sticky-nxzcszdczscav -->
 	<script>
 	$(document).ready(function() {
 		 var navoffeset=$(".agileits_header").offset().top;
