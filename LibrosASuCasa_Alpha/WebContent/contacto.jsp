@@ -1,9 +1,12 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Detalle de libros</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Contacto con nosotros</title>
+
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -55,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="w3l_search">
 			<form action="Menu" method="post">
-				<input type="text" name="lib_titulo" value="Buscar por tÃ­tulo o autor..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar por tÃ­tulo o autor...';}" required="">
+				<input type="text" name="lib_titulo" value="Buscar por título o autor..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar por título o autor...';}" required="">
 				<input type="hidden" name="operacion" value="busqueda" />		
 				<input type="submit" value="Buscar">
 			</form>
@@ -151,63 +154,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</nav>
 		</div>
 		<div class="w3l_banner_nav_right">
-			<div class="agileinfo_single">
-				<h5>TITULO: ${libro.titulo}</h5>
-				
-				<div class="col-md-4 agileinfo_single_left">
-					<img src="<c:url value='${libro.imagen }'/>" height="300" width="210"/>
+		<!-- mail -->
+		<div class="mail">
+			<h3>Mail Us</h3>
+			<div class="agileinfo_mail_grids">
+				<div class="col-md-4 agileinfo_mail_grid_left">
+					<ul>
+						<li><i class="fa fa-home" aria-hidden="true"></i></li>
+						<li>address<span>868 1st Avenue NYC.</span></li>
+					</ul>
+					<ul>
+						<li><i class="fa fa-envelope" aria-hidden="true"></i></li>
+						<li>email<span><a href="mailto:info@example.com">info@example.com</a></span></li>
+					</ul>
+					<ul>
+						<li><i class="fa fa-phone" aria-hidden="true"></i></li>
+						<li>call to us<span>(+123) 233 2362 826</span></li>
+					</ul>
 				</div>
-				<div class="col-md-8 agileinfo_single_right">
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked>
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<div class="w3agile_description">
-						<h4>AUTOR:</h4>
-						<p>${libro.autor}</p>
-						<h4>DESCRIPCION :</h4>
-						<p>${libro.descripcion}</p>
-					</div>
-					<div class="snipcart-item block">
-						<div class="snipcart-thumb agileinfo_single_right_snipcart">
-							<h4>${libro.precio}â‚¬</h4>
+				<div class="col-md-8 agileinfo_mail_grid_right">
+					<form action="#" method="post">
+						<div class="col-md-6 wthree_contact_left_grid">
+							<input type="text" name="Name" value="Name*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name*';}" required="">
+							<input type="email" name="Email" value="Email*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email*';}" required="">
 						</div>
-						<div class="snipcart-details agileinfo_single_right_details">
-							<form action="#" method="post">
-								<fieldset>
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="pulao basmati rice" />
-									<input type="hidden" name="amount" value="21.00" />
-									<input type="hidden" name="discount_amount" value="1.00" />
-									<input type="hidden" name="currency_code" value="USD" />
-									<input type="hidden" name="return" value=" " />
-									<input type="hidden" name="cancel_return" value=" " />
-									<input type="submit" name="submit" value="AÃ±adir al carrito" class="button" />
-								</fieldset>
-							</form>
+						<div class="col-md-6 wthree_contact_left_grid">
+							<input type="text" name="Telephone" value="Telephone*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone*';}" required="">
+							<input type="text" name="Subject" value="Subject*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject*';}" required="">
 						</div>
-					</div>
+						<div class="clearfix"> </div>
+						<textarea  name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+						<input type="submit" value="Submit">
+						<input type="reset" value="Clear">
+					</form>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
+<!-- //mail -->
+		</div>
 		<div class="clearfix"></div>
 	</div>
 <!-- //banner -->
-
-
+<!-- map -->
+	<div class="map">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96748.15352429623!2d-74.25419879353115!3d40.731667701988506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sshopping+mall+in+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1467205237951" style="border:0"></iframe>
+	</div>
+<!-- //map -->
 <!-- newsletter -->
 	<div class="newsletter">
 		<div class="container">
@@ -224,9 +217,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //newsletter -->
-
-
-
 <!-- footer -->
 	<div class="footer">
 		<div class="container">
@@ -292,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"> </div>
 			</div>
 			<div class="wthree_footer_copy">
-				<p>Â© 2016 Grocery Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+				<p>© 2016 Grocery Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
 		</div>
 	</div>
@@ -351,9 +341,14 @@ $(document).ready(function(){
 			}
 		});
 
-	</script>
-
-
+	</script>s
+		
+		
+		
+		
+		
+</head>
+<body>
 
 </body>
 </html>
