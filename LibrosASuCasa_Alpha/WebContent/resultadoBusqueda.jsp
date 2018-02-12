@@ -130,7 +130,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 
 	<!-- //header Este es el final del Header -->
-
+<!-- products-breadcrumb -->
+	<div class="products-breadcrumb">
+		<div class="container">
+			<ul>
+				<li><i class="fa fa-home" aria-hidden="true"></i><a href="Menu?operacion=mostrarcategorias">Home</a><span>|</span></li>
+				<li>Listado de libros</li>
+			</ul>
+		</div>
+	</div>
+<!-- //products-breadcrumb -->
 	<div class="banner">
 
 		<div class="w3l_banner_nav_left">
