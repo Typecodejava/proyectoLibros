@@ -68,6 +68,12 @@ public class Menu extends HttpServlet {
 			categorias = serv.BuscarCategorias();
 			request.setAttribute("categorias", categorias);
 			mostrar(request, response, "detalleLibro.jsp");
+			
+		} else if (request.getParameter("operacion").equals("mostrarcontacto")) {
+			List<String> categorias;
+			categorias = serv.BuscarCategorias();
+			request.setAttribute("categorias", categorias);
+			mostrar(request, response, "contacto.jsp");
 		}
 
 		System.out.println("--- esta dentro de senredirectu ---");
