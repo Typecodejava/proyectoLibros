@@ -10,31 +10,29 @@
 <meta name="viewport" content="width=device-width">
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/restaurante.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 
 <body>
-	<h1>INGRESE DATOS ADMINISTRADOR</h1>
+	<div class="logindiv">
+		<h2>INGRESE DATOS ADMINISTRADOR</h2>
+		<form action="LoginServlet" method="post">
+			<fieldset>
+				<legend>LOGIN</legend>
+				<p>
+					Name: <input type="text" name="name"><br>
+					<br> Password: <input type="password" name="password"><br>
+					<br> <input type="submit" value="enviar">
+			</fieldset>
+		</form>
+
+		<P>${Error}</P>
 
 
-
-
-	<form action="LoginServlet" method="post">
-		<fieldset>
-			<legend>LOGIN</legend>
-			<p>
-				Name: <input type="text" name="name"><br>
-				<br> Password: <input type="password" name="password"><br>
-				<br> <input type="submit" value="enviar">
-		</fieldset>
-	</form>
-
-	<P>${Error}</P>
-
-
-	<p>
-		<a href="paginaprincipal.jsp">Volver a la pagina principal</a>
-	</p>
-
+		<p>
+			<a href="paginaprincipal.jsp">Volver a la pagina principal</a>
+		</p>
+	</div>
 
 
 </body>

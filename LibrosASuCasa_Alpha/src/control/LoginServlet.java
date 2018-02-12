@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 
 				HttpSession miSesion = request.getSession(true);
 				miSesion.setAttribute("password", password);
+				miSesion.setAttribute("name", name);
 			
 
 				ColLibros libros = serv.MostrarLibrosBBDD();
